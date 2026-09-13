@@ -291,7 +291,28 @@ def markdown_links(line):
         yield label, m.group(1)
 
 
+def local_links(nbp):
+    """Return (label, target) for relative links to files that don't exist (anchors and URLs ignored)."""
+    missing = []
+    for c in json.loads(Path(nbp).read_text())["cells"]:
+        if c["cell_type"] != "markdown":
+            continue
+        for m in re.finditer(r"\[([^\]]*)\]\((?!https?://|#|mailto:)([^)\s]+)\)", src(c)):
+            target = urllib.parse.unquote(m.group(2).split("#", 1)[0])
+            if target and not (Path(nbp).parent / target).exists():
+                missing.append((m.group(1), target))
+    return missing
+
+
 def cmd_links(a):
+    if a.local:
+        bad = 0
+        for nbp in a.notebooks:
+            for label, target in local_links(nbp):
+                bad += 1
+                print(f"❌ {Path(nbp).name}: [{label}] → {target} (file not found)")
+        print(f"local links: {bad} missing")
+        return 1 if bad else 0
     urls = {}
     for nbp in a.notebooks:
         for c in json.loads(Path(nbp).read_text())["cells"]:
@@ -323,6 +344,7 @@ def main():
     c = sub.add_parser("check"); c.add_argument("notebook")
     c.add_argument("--kind", choices=list(KIND_SECTIONS), default="topic")
     l = sub.add_parser("links"); l.add_argument("notebooks", nargs="+"); l.add_argument("--titles", action="store_true")
+    l.add_argument("--local", action="store_true", help="check relative links to other files instead of URLs")
     a = p.parse_args()
     fn = {"build": cmd_build, "run": cmd_run, "check": cmd_check, "links": cmd_links}[a.cmd]
     sys.exit(fn(a) or 0)
