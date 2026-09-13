@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venvs/
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Files notebooks create while running (keep the repo clean)
+**/_outputs/
+mlruns/
+mlartifacts/
+wandb/
+catboost_info/
+lightning_logs/
+runs/
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+.dvc/tmp/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets
+.env
