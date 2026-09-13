@@ -66,6 +66,9 @@ def cmd_build(a):
     }
     for c in nb.cells:
         c.metadata = {k: v for k, v in c.metadata.items() if k == "tags"}
+        if c.cell_type == "code":
+            # jupytext turns "# %pip install ..." into a live magic; install lines must stay commented for learners
+            c.source = re.sub(r"^([ \t]*)([%!]\s*pip\s+install)", r"\1# \2", c.source, flags=re.M)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     nbformat.write(nb, a.out)
     print(f"built {a.out} ({len(nb.cells)} cells)")
@@ -209,6 +212,10 @@ def cmd_check(a):
             nxt = cells[i + 1] if i + 1 < len(cells) else {}
             if "solution" not in nxt.get("metadata", {}).get("tags", []) or not solution_code(src(nxt)):
                 errors.append(f"cell {i}: exercise not followed by a tagged solution with a ```python block")
+    # install lines must be commented out (learners uncomment them)
+    for i, c in code_cells:
+        if re.search(r"^[ \t]*[%!]\s*pip\s+install", src(c), re.M):
+            errors.append(f"cell {i}: live '%pip install' — comment it out (rebuild with tools/nb.py build)")
     # execution state
     for i, c in code_cells:
         for o in c.get("outputs", []):
