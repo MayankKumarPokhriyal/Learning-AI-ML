@@ -267,6 +267,23 @@ def check_url(url):
         return url, False, str(e)[:60]
 
 
+def markdown_links(line):
+    """Yield (label, url) for every [label](url) in a line, allowing brackets nested inside the label."""
+    for m in re.finditer(r"\]\((https?://[^)\s]+)\)", line):
+        depth, i = 0, m.start()
+        while i >= 0:
+            ch = line[i]
+            if ch == "]":
+                depth += 1
+            elif ch == "[":
+                depth -= 1
+                if depth == 0:
+                    break
+            i -= 1
+        label = line[i + 1:m.start()] if i >= 0 else ""
+        yield label, m.group(1)
+
+
 def cmd_links(a):
     urls = {}
     for nbp in a.notebooks:
@@ -274,8 +291,8 @@ def cmd_links(a):
             if c["cell_type"] != "markdown":
                 continue
             for line in src(c).splitlines():
-                for m in re.finditer(r"\[([^\]]*)\]\((https?://[^)\s]+)\)", line):
-                    urls.setdefault(m.group(2), (Path(nbp).name, m.group(1)))
+                for label, url in markdown_links(line):
+                    urls.setdefault(url, (Path(nbp).name, label))
     with ThreadPoolExecutor(8) as ex:
         results = list(ex.map(check_url, urls))
     bad = 0
