@@ -269,7 +269,7 @@ def check_url(url):
         req = urllib.request.Request(url, headers=UA)
         with urllib.request.urlopen(req, timeout=25) as r:
             body = r.read(200_000).decode("utf8", "ignore")
-            m = re.search(r'<meta name="citation_title" content="([^"]+)"', body) or re.search(r"<title>(.*?)</title>", body, re.S)
+            m = re.search(r'<meta name="citation_title" content="([^"]+)"', body) or re.search(r"<title[^>]*>(.*?)</title>", body, re.S | re.I)
             return url, True, " ".join(m.group(1).split())[:90] if m else ""
     except urllib.error.HTTPError as e:
         if e.code in (403, 429, 999):  # bot-blocked but reachable
