@@ -216,6 +216,11 @@ def cmd_check(a):
     for i, c in code_cells:
         if re.search(r"^[ \t]*[%!]\s*pip\s+install", src(c), re.M):
             errors.append(f"cell {i}: live '%pip install' — comment it out (rebuild with tools/nb.py build)")
+    # outputs must not leak the author's home directory (usernames end up in a public repo)
+    home = str(Path.home())
+    for i, c in code_cells:
+        if home in json.dumps(c.get("outputs", [])):
+            errors.append(f"cell {i}: output contains the absolute home path '{home}' — print a relative path instead")
     # execution state
     for i, c in code_cells:
         for o in c.get("outputs", []):
