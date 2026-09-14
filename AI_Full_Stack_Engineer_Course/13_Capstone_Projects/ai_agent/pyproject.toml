@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "research-agent"
+version = "1.0.0"
+description = "An arXiv research assistant agent: MCP tools, budgets, human approvals, guardrails, SSE API, tracing, evaluation"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=3.13,<4",
+    "mcp>=2.2,<3",
+    "fastapi>=0.141,<1",
+    "pydantic>=2.13,<3",
+    "uvicorn>=0.52,<1",
+    "jsonschema>=4.26,<5",
+    "defusedxml>=0.7,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9,<10",
+    "httpx>=0.28,<1",
+    "ruff>=0.16,<1",
+]
+
+[project.scripts]
+research-agent-ingest = "research_agent.ingest:main"
+research-agent-mcp = "research_agent.mcp_server:main"
+research-agent-eval = "research_agent.evaluate:main"
+research-agent-gate = "research_agent.gate:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/research_agent"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]          # run `pytest` from a source checkout without installing the package
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "live: calls a real OpenAI-compatible LLM server (skipped automatically when none is reachable)",
+]
+filterwarnings = [
+    "error::DeprecationWarning:research_agent",  # our own code must not use deprecated APIs
+    # third-party: starlette's TestClient touches an alias that anyio deprecated (not fixable in this project)
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

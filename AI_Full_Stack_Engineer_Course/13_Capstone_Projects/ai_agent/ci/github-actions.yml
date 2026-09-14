@@ -1,0 +1,132 @@
+# Example CI pipeline. To use it, copy this file to .github/workflows/ci.yml at the root of your repository.
+# If the project is not at the repository root, set PROJECT_DIR below to its folder.
+#
+# Every push/PR: lint → tests (stub LLM, no network) → corpus → Docker build + smoke test.
+# Nightly (or manual): the live evaluation against your LLM endpoint + the regression gate.
+# Configure the live job with repository variables LLM_BASE_URL and LLM_MODEL and the secret LLM_API_KEY.
+name: research-agent-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+env:
+  PROJECT_DIR: .
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+      - name: Ruff lint
+        run: uvx ruff@0.16.7 check .
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - name: Install locked runtime dependencies + dev tools
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" -c requirements.lock
+      - name: Unit, MCP, guardrail, budget, and API tests (StubLLM test double; no LLM server needed)
+        run: .venv/bin/python -m pytest -m "not live"
+
+  corpus:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e . -c requirements.lock
+      - name: Restore arXiv API snapshots (so CI does not re-download them)
+        uses: actions/cache@v6.1.0
+        with:
+          path: ${{ env.PROJECT_DIR }}/data/arxiv_snapshots
+          key: arxiv-snapshots-${{ hashFiles(format('{0}/src/research_agent/ingest.py', env.PROJECT_DIR)) }}
+      - name: Build the paper corpus (replays snapshots; fetches missing ones politely, 1 request / 3 s)
+        run: .venv/bin/python -m research_agent.ingest
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: paper-corpus
+          path: ${{ env.PROJECT_DIR }}/data/papers.sqlite
+          retention-days: 7
+
+  evaluate:
+    needs: corpus
+    if: ${{ vars.LLM_BASE_URL != '' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    env:
+      LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+      LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" -c requirements.lock
+      - uses: actions/download-artifact@v8
+        with:
+          name: paper-corpus
+          path: ${{ env.PROJECT_DIR }}/data/
+      - name: Live evaluation (27 labeled tasks, deterministic checkers)
+        run: .venv/bin/python -m research_agent.evaluate --out data/eval/report.json
+      - name: Regression gate (fails the workflow below the thresholds in evals/thresholds.json)
+        run: .venv/bin/python -m research_agent.gate --report data/eval/report.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: eval-report
+          path: ${{ env.PROJECT_DIR }}/data/eval/report.json
+
+  build:
+    needs: corpus
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: paper-corpus
+          path: ${{ env.PROJECT_DIR }}/data/
+      - name: Build image
+        run: docker build -t research-agent:${{ github.sha }} .
+      - name: Smoke test the container (no LLM here, so /ready must say 503 with the corpus and tools OK)
+        run: |
+          docker run -d --name agent -p 8000:8000 research-agent:${{ github.sha }}
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/health && break; sleep 1; done
+          curl -s http://127.0.0.1:8000/ready | tee ready.json
+          grep -q '"tools":"ok"' ready.json && grep -q '"corpus":"ok' ready.json
+          test "$(docker exec agent id -u)" != "0"
+          docker rm -f agent
+      # Next step in a real project: push to a registry (e.g. docker/login-action + docker push) on main only

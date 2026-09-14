@@ -1,0 +1,8 @@
+# Created at runtime — recreate with the commands in README.md
+# (arXiv snapshots, the paper corpus, conversation state, traces, saved reports, evaluation reports, LLM reply cache)
+data/
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.egg-info/

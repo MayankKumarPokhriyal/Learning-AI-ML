@@ -1,0 +1,15 @@
+# Keep the build context small: only the package, the lock file, and the paper corpus go into the image
+.git
+.gitignore
+.venv
+data/
+!data/papers.sqlite
+tests/
+evals/
+ci/
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+Dockerfile
+.dockerignore

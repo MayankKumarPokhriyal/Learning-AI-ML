@@ -1,0 +1,9 @@
+{
+  "min_tasks": 20,
+  "min_success_rate": 0.7,
+  "min_category_success_rate": {"approval": 0.5, "scope": 0.5},
+  "max_not_completed_rate": 0.1,
+  "max_mean_total_tokens": 15000,
+  "max_p95_latency_s": 120,
+  "max_success_rate_drop_vs_baseline": 0.1
+}
