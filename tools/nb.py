@@ -297,7 +297,9 @@ def local_links(nbp):
     for c in json.loads(Path(nbp).read_text())["cells"]:
         if c["cell_type"] != "markdown":
             continue
-        for m in re.finditer(r"\[([^\]]*)\]\((?!https?://|#|mailto:)([^)\s]+)\)", src(c)):
+        text = re.sub(r"```.*?```", "", src(c), flags=re.S)   # fenced code blocks
+        text = re.sub(r"`[^`\n]*`", "", text)                 # inline code spans
+        for m in re.finditer(r"\[([^\]]*)\]\((?!https?://|#|mailto:)([^)\s]+)\)", text):
             target = urllib.parse.unquote(m.group(2).split("#", 1)[0])
             if target and not (Path(nbp).parent / target).exists():
                 missing.append((m.group(1), target))
