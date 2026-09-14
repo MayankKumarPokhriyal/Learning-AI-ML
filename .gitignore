@@ -10,6 +10,7 @@ __pycache__/
 
 # Jupyter
 .ipynb_checkpoints/
+.jupyter/
 
 # Files notebooks create while running (keep the repo clean)
 **/_outputs/
