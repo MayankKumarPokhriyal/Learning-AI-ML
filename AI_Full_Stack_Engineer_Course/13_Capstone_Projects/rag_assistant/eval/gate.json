@@ -1,0 +1,18 @@
+{
+  "_comment": "Success criteria, fixed before the first evaluation run. `python -m rag_assistant gate REPORT.json` exits with code 1 if any check fails.",
+  "retrieval": {
+    "recall@5": [">=", 0.85],
+    "mrr@10": [">=", 0.65]
+  },
+  "answers": {
+    "answer_correctness": [">=", 0.75],
+    "faithfulness": [">=", 0.85],
+    "citation_validity": [">=", 0.90],
+    "citation_accuracy": [">=", 0.80],
+    "refusal_accuracy": [">=", 0.75],
+    "false_refusal_rate": ["<=", 0.20]
+  },
+  "operations": {
+    "total_s_p95": ["<=", 20.0]
+  }
+}

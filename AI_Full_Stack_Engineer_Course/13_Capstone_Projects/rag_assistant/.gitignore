@@ -1,0 +1,7 @@
+# Created by the project — recreate with the commands in README.md
+data/
+reports/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.egg-info/

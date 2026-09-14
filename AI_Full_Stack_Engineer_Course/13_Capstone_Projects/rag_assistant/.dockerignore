@@ -1,0 +1,15 @@
+# Keep the build context small: no tests, evaluation files, traces, reports or local caches
+.git
+.gitignore
+.venv
+tests/
+ci/
+eval/
+reports/
+data/traces/
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+Dockerfile
+.dockerignore
