@@ -1,0 +1,79 @@
+# Example CI pipeline. Copy to .github/workflows/ci.yml; set PROJECT_DIR if the project isn't the repository root.
+#
+# Training a CNN needs a GPU/laptop, not a CI runner, so trained artifacts are published as a GitHub release
+# (e.g. `gh release create model-v1 artifacts/model.pt2 artifacts/metadata.json`) and the repository variable
+# MODEL_RELEASE_TAG points at it. Without that variable, CI still lints and runs every test except the quality gate.
+name: image-classifier-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PROJECT_DIR: .
+  UV_INDEX_ARGS: --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple --index-strategy unsafe-best-match
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+      - run: uvx ruff@0.16.7 check .
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - name: Install CPU PyTorch + project (train and dev extras)
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[train,dev]" $UV_INDEX_ARGS
+      - name: Unit + API tests (tiny exported model, no data or GPU)
+        run: .venv/bin/python -m pytest -m "not quality"
+
+  quality-and-build:
+    needs: test
+    if: ${{ vars.MODEL_RELEASE_TAG != '' }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[train,dev]" $UV_INDEX_ARGS
+      - name: Download the released model
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "${{ vars.MODEL_RELEASE_TAG }}" --pattern model.pt2 --pattern metadata.json --dir artifacts
+      - name: Recreate the data splits (downloads EuroSAT, 94 MB)
+        run: .venv/bin/python -m image_classifier.data
+      - name: Model-quality gate
+        run: .venv/bin/python -m pytest -m quality
+      - name: Build image
+        run: docker build -t image-classifier:${{ github.sha }} .
+      - name: Smoke test the container
+        run: |
+          docker run -d --name clf -p 8000:8000 image-classifier:${{ github.sha }}
+          for i in $(seq 1 60); do curl -fsS http://127.0.0.1:8000/ready && break; sleep 1; done
+          docker exec clf python -c "import io, sys; from PIL import Image; b = io.BytesIO(); Image.new('RGB', (64, 64), (40, 120, 40)).save(b, 'PNG'); sys.stdout.buffer.write(b.getvalue())" > probe.png
+          curl -fsS -F "file=@probe.png;type=image/png" "http://127.0.0.1:8000/predict?k=3"
+          docker rm -f clf

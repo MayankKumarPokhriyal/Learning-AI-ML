@@ -1,0 +1,13 @@
+# Keep the 94 MB dataset, tests, and caches out of the build context
+.git
+.gitignore
+.venv
+data/
+tests/
+ci/
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+Dockerfile
+.dockerignore

@@ -1,0 +1,72 @@
+# Example CI pipeline. To use it, copy this file to .github/workflows/ci.yml at the root of your repository.
+# If the project is not at the repository root, set PROJECT_DIR below to its folder.
+name: churn-service-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  PROJECT_DIR: .
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+      - name: Ruff lint
+        run: uvx ruff@0.16.7 check .
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - name: Install locked runtime dependencies + dev tools
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" -c requirements.lock
+      - name: Train (downloads the 1 MB dataset, verifies its checksum, < 1 minute)
+        run: .venv/bin/python -m churn_service.train
+      - name: Tests (unit + API + model-quality gate)
+        run: .venv/bin/python -m pytest
+      - name: Keep the trained artifacts for the build job
+        uses: actions/upload-artifact@v7
+        with:
+          name: churn-artifacts
+          path: ${{ env.PROJECT_DIR }}/artifacts/
+          retention-days: 7
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          name: churn-artifacts
+          path: ${{ env.PROJECT_DIR }}/artifacts/
+      - name: Build image
+        run: docker build -t churn-service:${{ github.sha }} .
+      - name: Smoke test the container
+        run: |
+          docker run -d --name churn -p 8000:8000 churn-service:${{ github.sha }}
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/ready && break; sleep 1; done
+          curl -fsS -X POST http://127.0.0.1:8000/predict -H "content-type: application/json" \
+            -d '{"gender":"Female","senior_citizen":0,"partner":"Yes","dependents":"No","tenure":1,"phone_service":"No","multiple_lines":"No phone service","internet_service":"DSL","online_security":"No","online_backup":"Yes","device_protection":"No","tech_support":"No","streaming_tv":"No","streaming_movies":"No","contract":"Month-to-month","paperless_billing":"Yes","payment_method":"Electronic check","monthly_charges":29.85,"total_charges":29.85}'
+          docker rm -f churn
+      # Next step in a real project: push to a registry (e.g. docker/login-action + docker push) on main only

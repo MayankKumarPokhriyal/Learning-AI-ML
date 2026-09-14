@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "image-classifier"
+version = "1.0.0"
+description = "EuroSAT land-use classification: transfer learning, torch.export, FastAPI upload service, tests, Docker, CI"
+readme = "README.md"
+requires-python = ">=3.12"
+# Serving dependencies only: the exported model needs torch, not torchvision
+dependencies = [
+    "torch>=2.14,<3",
+    "numpy>=2.5,<3",
+    "pillow>=12,<13",
+    "fastapi>=0.141,<1",
+    "pydantic>=2.13,<3",
+    "uvicorn>=0.52,<1",
+    "python-multipart>=0.0.20,<0.1",
+]
+
+[project.optional-dependencies]
+train = [
+    "torchvision>=0.29,<1",
+    "scikit-learn>=1.9,<2",
+    "pandas>=3.0,<4",
+    "matplotlib>=3.10,<4",
+]
+dev = [
+    "pytest>=9,<10",
+    "httpx>=0.28,<1",
+    "ruff>=0.16,<1",
+]
+
+[project.scripts]
+image-classifier-train = "image_classifier.train:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/image_classifier"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+log_level = "WARNING"      # torch.export logs a lot at DEBUG level; keep captured logs readable
+markers = ["quality: needs the trained artifacts/ and the EuroSAT data (deselect with -m 'not quality')"]
+filterwarnings = [
+    "error::DeprecationWarning:image_classifier",
+    # third-party: starlette's TestClient touches an alias that anyio deprecated (not fixable in this project)
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

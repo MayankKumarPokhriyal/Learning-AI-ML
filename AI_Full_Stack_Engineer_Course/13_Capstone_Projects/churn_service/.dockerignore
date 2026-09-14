@@ -1,0 +1,14 @@
+# Keep the build context small and free of data, tests, and local caches
+.git
+.gitignore
+.venv
+data/
+tests/
+ci/
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+artifacts/MODEL_CARD.md
+Dockerfile
+.dockerignore

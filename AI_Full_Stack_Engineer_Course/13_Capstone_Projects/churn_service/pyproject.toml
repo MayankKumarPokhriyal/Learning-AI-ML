@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "churn-service"
+version = "1.0.0"
+description = "Customer churn prediction: profit-based threshold, FastAPI service, tests, Docker, CI"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5,<3",
+    "pandas>=3.0,<4",
+    "scikit-learn>=1.9,<2",
+    "joblib>=1.6,<2",
+    "fastapi>=0.141,<1",
+    "pydantic>=2.13,<3",
+    "uvicorn>=0.52,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9,<10",
+    "httpx>=0.28,<1",
+    "ruff>=0.16,<1",
+]
+
+[project.scripts]
+churn-train = "churn_service.train:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/churn_service"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]          # run `pytest` from a source checkout without installing the package
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+    "error::DeprecationWarning:churn_service",  # our own code must not use deprecated APIs
+    # third-party: starlette's TestClient touches an alias that anyio deprecated (not fixable in this project)
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
