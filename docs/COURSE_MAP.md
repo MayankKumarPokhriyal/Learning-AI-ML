@@ -22,7 +22,7 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 | | 02_Plotly *(optional)* | topic | core |
 | **03 Classical ML** | 01_ML_Fundamentals_From_Scratch | topic | core |
 | | 02_Scikit_Learn | topic | core |
-| | 03_Gradient_Boosting | topic | core |
+| | 10_Gradient_Boosting | topic | core |
 | **04 Deep Learning** | 01_Neural_Networks_From_Scratch | topic | core |
 | | 02_PyTorch | topic | core |
 | | 03_Transformers_From_Scratch | topic | core |

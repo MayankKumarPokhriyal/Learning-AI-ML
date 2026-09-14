@@ -95,7 +95,7 @@ Notebooks marked *(optional)* are useful but rarely needed for interviews — sk
 |---|---|---|
 | 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Logistic regression, L1/L2, bias–variance, CV, metrics, calibration, trees — in NumPy |
 | 02 | [Scikit-Learn](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/02_Scikit_Learn.ipynb) | Pipelines, CV strategies, tuning, imbalance, thresholds, persistence |
-| 03 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/03_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
+| 03 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/10_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
 
 ### Phase 4 — Deep Learning · [`04_Deep_Learning/`](AI_Full_Stack_Engineer_Course/04_Deep_Learning/)
 
