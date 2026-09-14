@@ -26,6 +26,7 @@ runs/
 *.pkl
 *.joblib
 .dvc/tmp/
+flashcards/
 
 # OS / editors
 .DS_Store
