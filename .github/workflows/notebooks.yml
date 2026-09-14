@@ -1,0 +1,51 @@
+name: Notebook checks
+
+on:
+  pull_request:
+    paths:
+      - "AI_Full_Stack_Engineer_Course/**/*.ipynb"
+      - "tools/**"
+      - "docs/NOTEBOOK_TEMPLATE.md"
+  push:
+    branches: [main]
+    paths:
+      - "AI_Full_Stack_Engineer_Course/**/*.ipynb"
+      - "tools/**"
+  schedule:
+    - cron: "0 6 * * 1"   # every Monday: catch links that died since the last change
+  workflow_dispatch:
+
+jobs:
+  structure:
+    name: Template structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check every notebook against the template
+        run: |
+          status=0
+          for nb in AI_Full_Stack_Engineer_Course/*/*.ipynb; do
+            case "$nb" in
+              */13_Capstone_Projects/*) kind=capstone ;;
+              */14_Templates/*)         kind=template ;;
+              */15_Interview_Prep/*)    kind=prep ;;
+              *)                        kind=topic ;;
+            esac
+            python tools/nb.py check "$nb" --kind "$kind" || status=1
+          done
+          exit $status
+
+  links:
+    name: Links resolve
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify every link in every notebook
+        run: python tools/nb.py links AI_Full_Stack_Engineer_Course/*/*.ipynb

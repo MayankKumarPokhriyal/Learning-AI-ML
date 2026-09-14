@@ -1,0 +1,11 @@
+# requirements-kfp.txt — generated from the imports used by the course notebooks that run in this environment
+# Python 3.12. Install with:  uv pip install -r requirements-kfp.txt
+# Use a SEPARATE virtual environment for these notebooks: 09_MLOps/06_Kubeflow_Pipelines
+ipykernel==7.3.0
+joblib==1.6.0
+kfp==2.17.0
+kfp-pipeline-spec==2.17.0
+numpy==2.5.3
+pandas==3.0.5
+PyYAML==6.0.3
+scikit-learn==1.9.1

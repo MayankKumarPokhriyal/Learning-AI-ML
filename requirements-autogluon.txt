@@ -1,0 +1,13 @@
+# requirements-autogluon.txt — generated from the imports used by the course notebooks that run in this environment
+# Python 3.12. Install with:  uv pip install -r requirements-autogluon.txt
+# Use a SEPARATE virtual environment for these notebooks: 12_AutoML_Experimentation/03_AutoGluon
+autogluon.common==1.6.1
+autogluon.core==1.6.1
+autogluon.features==1.6.1
+autogluon.tabular==1.6.1
+ipykernel==7.3.0
+lightgbm==4.7.0
+matplotlib==3.11.2
+numpy==2.5.3
+pandas==2.3.3
+scikit-learn==1.9.1

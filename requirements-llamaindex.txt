@@ -1,0 +1,17 @@
+# requirements-llamaindex.txt — generated from the imports used by the course notebooks that run in this environment
+# Python 3.12. Install with:  uv pip install -r requirements-llamaindex.txt
+# Use a SEPARATE virtual environment for these notebooks: 08_Generative_AI_LLM/04_LlamaIndex
+huggingface_hub==1.31.0
+ipykernel==7.3.0
+llama-index-core==0.14.24
+llama-index-embeddings-huggingface==0.8.0
+llama-index-llms-openai==0.7.10
+llama-index-llms-openai-like==0.8.0
+llama-index-postprocessor-sbert-rerank==0.6.0
+llama-index-retrievers-bm25==0.8.0
+matplotlib==3.11.2
+numpy==2.5.3
+openai==2.54.0
+pandas==3.0.5
+pydantic==2.13.5
+transformers==5.17.0

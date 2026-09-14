@@ -1,285 +1,309 @@
 # AI Full Stack Engineer Course
 
-> A complete, project-driven roadmap that takes you from `print("hello")` to shipping production RAG apps, MLOps pipelines, and end-to-end ML/DL/LLM systems — all in Jupyter notebooks you can run on your laptop.
+> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 64 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayank%20Kumar%20Pokhriyal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
-![Notebooks](https://img.shields.io/badge/notebooks-60%2B-success)
-![Modules](https://img.shields.io/badge/modules-15-informational)
-![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Advanced-orange)
+![Notebooks](https://img.shields.io/badge/notebooks-64-success)
+![Modules](https://img.shields.io/badge/modules-16-informational)
+![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Interview--ready-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
 ## Why this course
 
-- **Beginner-first.** Module 0 starts with what a variable is. By the time you finish, you have shipped a RAG application behind a FastAPI endpoint.
-- **Project-driven.** Every notebook ends with a mini-project and interview Q&A — you learn by *building*, not by reading.
-- **Modern, industry-grade stack.** PyTorch, Transformers, LangChain, FastAPI, MLflow, Polars, Ray — the same tools used at top AI teams in 2026.
-- **Free and self-paced.** No sign-ups, no paywalls, no cloud credits required. Most notebooks run on a CPU laptop.
-- **Ends in capstones.** Three full end-to-end projects (ML, DL, LLM) plus reusable templates you can fork for your own work.
+- **Beginner-first.** Module 00 starts with what a variable is. Every term is defined the first time it appears.
+- **Everything runs for real.** Every notebook is executed top to bottom with its outputs saved — no simulated results, no invented metrics. Conclusions are computed from the data.
+- **You write code, not just read it.** Every notebook has ✍️ *Your Turn* exercises and a graded 🟢/🟡/🔴 practice set. Run a cell and you instantly see ✅ correct, ⏳ not attempted, or ❌ with a hint. Solutions are hidden until you want them.
+- **Built for interviews.** Each notebook has a 🔧 *Build It From Scratch* section (softmax, k-NN, backprop, attention, gradient boosting… with only NumPy/PyTorch), 10–15 real interview questions with 30-second answers, deeper follow-ups and common wrong answers, and a quick quiz.
+- **Current tools (2026).** NumPy 2, pandas 3, scikit-learn 1.9, PyTorch 2.14, Transformers 5, LangChain/LangGraph, MCP, MLflow 3, Airflow 3, Spark 4.
+- **No API keys required.** LLM notebooks run against a free local model (e.g. `gpt-oss-20b` via llama.cpp) through the OpenAI-compatible API; the same code works with Ollama, LM Studio, OpenAI, or Anthropic by changing three environment variables.
+- **Verified resources.** Every video, paper, and doc link is checked automatically and its title matches its label.
 
 ## Who this is for
 
-- Absolute beginners who can use a computer but have never written code.
-- CS / data students who want a single, opinionated roadmap.
-- Working software engineers transitioning into AI/ML.
-- Self-taught practitioners who want to fill the gaps between "I trained a model" and "I shipped a model."
-
-## What you will be able to do by the end
-
-- Train classical ML models (XGBoost, LightGBM) and tune them with Optuna.
-- Build and train deep neural nets in PyTorch and TensorFlow.
-- Fine-tune Transformers for NLP and run YOLO for object detection.
-- Build a RAG (Retrieval-Augmented Generation) chatbot over your own documents.
-- Track experiments with MLflow / Weights & Biases.
-- Serve any model behind a FastAPI / BentoML endpoint.
-- Process datasets that don't fit in RAM with Polars, Dask, and PySpark.
-- Talk fluently about MLOps, model serving, vector stores, and LLM application patterns in interviews.
+- Beginners who have never written code and want a single, ordered path into AI.
+- Students and software engineers moving into ML / AI engineering.
+- Anyone preparing for **ML engineer, AI/LLM engineer, MLOps, or data science interviews**.
 
 ---
 
-## The roadmap (phase-based)
+## How every notebook works
+
+Every notebook follows the same rhythm (full spec: [docs/NOTEBOOK_TEMPLATE.md](docs/NOTEBOOK_TEMPLATE.md)):
+
+| Section | What you do |
+|---|---|
+| 🤔 What Is It? · 🎯 Why It Matters | Plain-English intuition, and where it shows up in jobs and interviews |
+| ✅ By the End You Can · 📋 Contents · ⚙️ Setup | Learning goals, then one setup cell |
+| 1…N Concept sections | Intuition → runnable code → ✍️ **Your Turn** → 💡 **Interview angle** |
+| 🔧 Build It From Scratch | Implement the core idea yourself and check it against the library |
+| ⚠️ Common Pitfalls | Runnable ❌ wrong / ✅ right pairs |
+| 🏋️ Practice Exercises | 🟢 ×3 · 🟡 ×2 · 🔴 ×1 interview-style, with instant feedback |
+| 🚀 Mini Project | A real dataset, end to end — plus 🗣️ how to talk about it in an interview |
+| 🎤 Interview Q&A · 🧪 Quick Quiz | Answer out loud first, then reveal |
+| 📚 Resources · 📝 Cheat Sheet · ➡️ What's Next | Verified docs, videos, papers; a one-table summary; the next notebook |
+
+---
+
+## The roadmap
 
 ```mermaid
 flowchart TD
-    P1[Phase 1: Foundations<br/>Python, OOP, Packaging]
-    P2[Phase 2: Data & Visualization<br/>NumPy, Pandas, Matplotlib]
-    P3[Phase 3: Classical ML<br/>scikit-learn, XGBoost, LightGBM]
-    P4[Phase 4: Deep Learning<br/>PyTorch, TensorFlow, Keras, JAX]
-    P5[Phase 5: Specializations<br/>NLP, Computer Vision, RL, GenAI/LLM]
-    P6[Phase 6: Production<br/>MLOps, Serving, Big Data, AutoML]
-    P7[Phase 7: Capstones<br/>End-to-End ML, DL, LLM Projects]
-
-    P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7
+    P1[Phase 1 · Foundations<br/>Python, internals, packaging]
+    P2[Phase 2 · Data & Math<br/>NumPy, Pandas, SQL, math, statistics, visualization]
+    P3[Phase 3 · Classical ML<br/>from scratch, scikit-learn, gradient boosting]
+    P4[Phase 4 · Deep Learning<br/>neural nets & transformers from scratch, PyTorch]
+    P5[Phase 5 · Specializations<br/>NLP, computer vision, reinforcement learning]
+    P6[Phase 6 · Generative AI<br/>LLM APIs, RAG, agents & MCP, evaluation, fine-tuning]
+    P7[Phase 7 · Production<br/>MLOps, serving, Docker & CI, big data, AutoML]
+    P8[Phase 8 · Capstones & Interview Prep]
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7 --> P8
 ```
 
-Follow phases in order. Inside each phase you can pick the libraries that match your goal.
+Notebooks marked *(optional)* are useful but rarely needed for interviews — skim or skip them if time is short.
 
 ---
 
 ## Course at a glance
 
-15 modules, 60+ notebooks. Every link below opens the notebook on GitHub.
+### Phase 1 — Foundations · [`00_Foundations/`](AI_Full_Stack_Engineer_Course/00_Foundations/)
 
-### Phase 1 — Foundations
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Python Basics](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) | Types, containers and their costs, functions, mutability, errors, files |
+| 02 | [Python Builtins](AI_Full_Stack_Engineer_Course/00_Foundations/02_Python_Builtins.ipynb) | Generators, closures, decorators, context managers, collections, itertools |
+| 03 | [OOP in Python](AI_Full_Stack_Engineer_Course/00_Foundations/03_OOP_in_Python.ipynb) | Classes, MRO, dunder methods, dataclasses, a scikit-learn-style API from scratch |
+| 04 | [Virtual Env & Packaging](AI_Full_Stack_Engineer_Course/00_Foundations/04_Virtual_Env_and_Packaging.ipynb) | venv, uv, lock files, `pyproject.toml`, building and testing a package |
+| 05 | [Python Internals & Concurrency](AI_Full_Stack_Engineer_Course/00_Foundations/05_Python_Internals_and_Concurrency.ipynb) | References, GC, the GIL, threads vs processes vs asyncio |
 
-[`AI_Full_Stack_Engineer_Course/00_Foundations/`](AI_Full_Stack_Engineer_Course/00_Foundations/) — *Python from zero to confident.*
+### Phase 2 — Data & Math · [`01_Core_Scientific_Computing/`](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/) · [`02_Data_Visualization/`](AI_Full_Stack_Engineer_Course/02_Data_Visualization/)
 
-- [01 Python Basics](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb)
-- [02 Python Builtins](AI_Full_Stack_Engineer_Course/00_Foundations/02_Python_Builtins.ipynb)
-- [03 OOP in Python](AI_Full_Stack_Engineer_Course/00_Foundations/03_OOP_in_Python.ipynb)
-- [04 Virtual Env and Packaging](AI_Full_Stack_Engineer_Course/00_Foundations/04_Virtual_Env_and_Packaging.ipynb)
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [NumPy](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/01_NumPy.ipynb) | Vectorization, broadcasting, views vs copies, linear regression from scratch |
+| 02 | [Pandas](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/02_Pandas.ipynb) | pandas 3 idioms, groupby/window functions, joins, reshaping, leakage-safe cleaning |
+| 03 | [SQL with DuckDB](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/03_SQL_with_DuckDB.ipynb) | Joins, CTEs, window functions, classic SQL interview problems |
+| 04 | [Math for ML](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/04_Math_for_ML.ipynb) | Vectors, matrices, SVD/PCA, gradients, chain rule, entropy |
+| 05 | [Statistics & Probability](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/05_Statistics_and_Probability.ipynb) | CLT, confidence intervals, hypothesis tests, power, A/B testing |
+| 01 | [Matplotlib & Seaborn](AI_Full_Stack_Engineer_Course/02_Data_Visualization/01_Matplotlib_and_Seaborn.ipynb) | The plots every ML engineer makes, EDA that tells the truth |
+| 02 | [Plotly](AI_Full_Stack_Engineer_Course/02_Data_Visualization/02_Plotly.ipynb) *(optional)* | Interactive charts and ML dashboards |
 
-### Phase 2 — Data & Visualization
+### Phase 3 — Classical Machine Learning · [`03_Classical_Machine_Learning/`](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/)
 
-[`AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/`](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/) — *The numerical & tabular toolbox every ML engineer needs.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Logistic regression, L1/L2, bias–variance, CV, metrics, calibration, trees — in NumPy |
+| 02 | [Scikit-Learn](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/02_Scikit_Learn.ipynb) | Pipelines, CV strategies, tuning, imbalance, thresholds, persistence |
+| 03 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/03_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
 
-- [01 NumPy](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/01_NumPy.ipynb)
-- [02 Pandas](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/02_Pandas.ipynb)
-- [03 SciPy](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/03_SciPy.ipynb)
+### Phase 4 — Deep Learning · [`04_Deep_Learning/`](AI_Full_Stack_Engineer_Course/04_Deep_Learning/)
 
-[`AI_Full_Stack_Engineer_Course/02_Data_Visualization/`](AI_Full_Stack_Engineer_Course/02_Data_Visualization/) — *See your data before you model it.*
-
-- [01 Matplotlib](AI_Full_Stack_Engineer_Course/02_Data_Visualization/01_Matplotlib.ipynb)
-- [02 Seaborn](AI_Full_Stack_Engineer_Course/02_Data_Visualization/02_Seaborn.ipynb)
-- [03 Plotly](AI_Full_Stack_Engineer_Course/02_Data_Visualization/03_Plotly.ipynb)
-- [04 Bokeh](AI_Full_Stack_Engineer_Course/02_Data_Visualization/04_Bokeh.ipynb)
-- [05 Altair](AI_Full_Stack_Engineer_Course/02_Data_Visualization/05_Altair.ipynb)
-
-### Phase 3 — Classical Machine Learning
-
-[`AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/`](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/) — *Models that win Kaggle competitions and power most real-world ML.*
-
-- [01 Scikit-Learn](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_Scikit_Learn.ipynb)
-- [02 XGBoost](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/02_XGBoost.ipynb)
-- [03 LightGBM](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/03_LightGBM.ipynb)
-- [04 CatBoost](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/04_CatBoost.ipynb)
-
-### Phase 4 — Deep Learning
-
-[`AI_Full_Stack_Engineer_Course/04_Deep_Learning/`](AI_Full_Stack_Engineer_Course/04_Deep_Learning/) — *Neural networks from autograd to training loops.*
-
-- [01 PyTorch](AI_Full_Stack_Engineer_Course/04_Deep_Learning/01_PyTorch.ipynb)
-- [02 TensorFlow](AI_Full_Stack_Engineer_Course/04_Deep_Learning/02_TensorFlow.ipynb)
-- [03 Keras](AI_Full_Stack_Engineer_Course/04_Deep_Learning/03_Keras.ipynb)
-- [04 JAX](AI_Full_Stack_Engineer_Course/04_Deep_Learning/04_JAX.ipynb)
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Neural Networks From Scratch](AI_Full_Stack_Engineer_Course/04_Deep_Learning/01_Neural_Networks_From_Scratch.ipynb) | Backprop by hand, a tiny autograd engine, optimizers, dropout |
+| 02 | [PyTorch](AI_Full_Stack_Engineer_Course/04_Deep_Learning/02_PyTorch.ipynb) | Tensors, autograd, training loops done right, CNNs, mixed precision |
+| 03 | [Transformers From Scratch](AI_Full_Stack_Engineer_Course/04_Deep_Learning/03_Transformers_From_Scratch.ipynb) | BPE, attention, RoPE, a mini-GPT, KV cache |
+| 04 | [Keras 3 Overview](AI_Full_Stack_Engineer_Course/04_Deep_Learning/04_Keras_3_Overview.ipynb) *(optional)* | Multi-backend Keras, callbacks, custom layers |
 
 ### Phase 5 — Specializations
 
-Pick one or all four. They are independent.
+**NLP** · [`05_NLP/`](AI_Full_Stack_Engineer_Course/05_NLP/)
 
-[`AI_Full_Stack_Engineer_Course/05_NLP/`](AI_Full_Stack_Engineer_Course/05_NLP/) — *From classical text processing to Transformers.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Classical NLP](AI_Full_Stack_Engineer_Course/05_NLP/01_Classical_NLP.ipynb) | Tokenization, spaCy, TF-IDF baselines, word2vec |
+| 02 | [Embeddings & Semantic Search](AI_Full_Stack_Engineer_Course/05_NLP/02_Embeddings_and_Semantic_Search.ipynb) | Bi- vs cross-encoders, FAISS, hybrid search, reranking, retrieval metrics |
+| 03 | [Hugging Face Transformers](AI_Full_Stack_Engineer_Course/05_NLP/03_HuggingFace_Transformers.ipynb) | Tokenizers, fine-tuning with Trainer, NER, LoRA intro |
 
-- [01 NLTK](AI_Full_Stack_Engineer_Course/05_NLP/01_NLTK.ipynb)
-- [02 spaCy](AI_Full_Stack_Engineer_Course/05_NLP/02_spaCy.ipynb)
-- [03 Gensim](AI_Full_Stack_Engineer_Course/05_NLP/03_Gensim.ipynb)
-- [04 SentenceTransformers](AI_Full_Stack_Engineer_Course/05_NLP/04_SentenceTransformers.ipynb)
-- [05 Transformers](AI_Full_Stack_Engineer_Course/05_NLP/05_Transformers.ipynb)
+**Computer Vision** · [`06_Computer_Vision/`](AI_Full_Stack_Engineer_Course/06_Computer_Vision/)
 
-[`AI_Full_Stack_Engineer_Course/06_Computer_Vision/`](AI_Full_Stack_Engineer_Course/06_Computer_Vision/) — *Pixels, CNNs, object detection.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [OpenCV](AI_Full_Stack_Engineer_Course/06_Computer_Vision/01_OpenCV.ipynb) | Filtering, edges, contours, feature matching, homography |
+| 02 | [CNNs & Transfer Learning](AI_Full_Stack_Engineer_Course/06_Computer_Vision/02_CNNs_and_Transfer_Learning.ipynb) | Convolution math, ResNets, fine-tuning, Grad-CAM |
+| 03 | [YOLO Object Detection](AI_Full_Stack_Engineer_Course/06_Computer_Vision/03_YOLO_Object_Detection.ipynb) | IoU, NMS, mAP from scratch; training and tracking with YOLO |
 
-- [01 OpenCV](AI_Full_Stack_Engineer_Course/06_Computer_Vision/01_OpenCV.ipynb)
-- [02 Torchvision](AI_Full_Stack_Engineer_Course/06_Computer_Vision/02_Torchvision.ipynb)
-- [03 YOLO (Ultralytics)](AI_Full_Stack_Engineer_Course/06_Computer_Vision/03_YOLO_Ultralytics.ipynb)
-- [04 Detectron2](AI_Full_Stack_Engineer_Course/06_Computer_Vision/04_Detectron2.ipynb)
+**Reinforcement Learning** · [`07_Reinforcement_Learning/`](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/)
 
-[`AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/`](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/) — *Agents that learn by trial and error.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Gymnasium & Q-Learning](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/01_Gymnasium_and_Q_Learning.ipynb) | MDPs, Bellman equations, value iteration, Q-learning vs SARSA |
+| 02 | [Deep RL with Stable-Baselines3](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/02_Deep_RL_with_Stable_Baselines3.ipynb) | DQN, REINFORCE from scratch, PPO, and how RLHF works |
 
-- [01 Gymnasium](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/01_Gymnasium.ipynb)
-- [02 Stable Baselines3](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/02_Stable_Baselines3.ipynb)
-- [03 RLlib](AI_Full_Stack_Engineer_Course/07_Reinforcement_Learning/03_RLlib.ipynb)
+### Phase 6 — Generative AI & LLMs · [`08_Generative_AI_LLM/`](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/)
 
-[`AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/`](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/) — *Build with LLMs: APIs, RAG, serving, training.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [LLM APIs & Prompting](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/01_LLM_APIs_and_Prompting.ipynb) | Chat APIs, structured output, tool calling, streaming, cost & latency |
+| 02 | [RAG From Scratch](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/02_RAG_From_Scratch.ipynb) | Chunking, hybrid retrieval, reranking, grounded answers with citations |
+| 03 | [LangChain & LangGraph](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/03_LangChain_and_LangGraph.ipynb) | LCEL, stateful graphs, checkpoints, human-in-the-loop |
+| 04 | [LlamaIndex](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/04_LlamaIndex.ipynb) | Indexes, retrievers, query engines, workflows |
+| 05 | [Agents, Tool Calling & MCP](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/05_Agents_Tool_Calling_and_MCP.ipynb) | Agent loops, tool errors, MCP servers and clients, prompt-injection defenses |
+| 06 | [LLM Evaluation](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/06_LLM_Evaluation.ipynb) | Golden sets, retrieval metrics, LLM-as-judge, regression testing |
+| 07 | [Fine-Tuning with LoRA & DPO](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/07_Fine_Tuning_LoRA_and_DPO.ipynb) | SFT, LoRA/QLoRA, preference tuning, before/after evaluation |
+| 08 | [LLM Inference & Serving](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/08_LLM_Inference_and_Serving.ipynb) | KV-cache math, batching, quantization, vLLM and llama.cpp |
+| 09 | [Distributed Training Overview](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/09_Distributed_Training_Overview.ipynb) *(optional)* | Data/tensor/pipeline parallelism, ZeRO, FSDP memory math |
 
-- [01 OpenAI SDK](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/01_OpenAI_SDK.ipynb)
-- [02 LangChain](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/02_LangChain.ipynb)
-- [03 LlamaIndex](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/03_LlamaIndex.ipynb)
-- [04 vLLM](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/04_vLLM.ipynb)
-- [05 DeepSpeed](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/05_DeepSpeed.ipynb)
+### Phase 7 — Production
 
-### Phase 6 — Production
+**MLOps** · [`09_MLOps/`](AI_Full_Stack_Engineer_Course/09_MLOps/)
 
-[`AI_Full_Stack_Engineer_Course/09_MLOps/`](AI_Full_Stack_Engineer_Course/09_MLOps/) — *Track, version, schedule, and orchestrate.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [MLflow](AI_Full_Stack_Engineer_Course/09_MLOps/01_MLflow.ipynb) | Tracking, registry aliases, serving, tracing |
+| 02 | [Weights & Biases](AI_Full_Stack_Engineer_Course/09_MLOps/02_Weights_and_Biases.ipynb) *(optional)* | Experiment dashboards, artifacts, sweeps |
+| 03 | [DVC](AI_Full_Stack_Engineer_Course/09_MLOps/03_DVC.ipynb) | Data versioning, reproducible pipelines, experiments |
+| 04 | [Airflow](AI_Full_Stack_Engineer_Course/09_MLOps/04_Airflow.ipynb) | Airflow 3 TaskFlow DAGs, scheduling, testing, a retraining DAG |
+| 05 | [Model Monitoring & Drift](AI_Full_Stack_Engineer_Course/09_MLOps/05_Model_Monitoring_and_Drift.ipynb) | Drift statistics, monitoring without labels, retraining triggers |
+| 06 | [Kubeflow Pipelines](AI_Full_Stack_Engineer_Course/09_MLOps/06_Kubeflow_Pipelines.ipynb) *(optional)* | KFP v2 components, artifacts, control flow, local runs |
 
-- [01 MLflow](AI_Full_Stack_Engineer_Course/09_MLOps/01_MLflow.ipynb)
-- [02 Weights & Biases](AI_Full_Stack_Engineer_Course/09_MLOps/02_Weights_and_Biases.ipynb)
-- [03 DVC](AI_Full_Stack_Engineer_Course/09_MLOps/03_DVC.ipynb)
-- [04 Airflow](AI_Full_Stack_Engineer_Course/09_MLOps/04_Airflow.ipynb)
-- [05 Kubeflow](AI_Full_Stack_Engineer_Course/09_MLOps/05_Kubeflow.ipynb)
+**Model Serving** · [`10_Model_Serving/`](AI_Full_Stack_Engineer_Course/10_Model_Serving/)
 
-[`AI_Full_Stack_Engineer_Course/10_Model_Serving/`](AI_Full_Stack_Engineer_Course/10_Model_Serving/) — *Turn a `.pkl` into an HTTP endpoint.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [FastAPI](AI_Full_Stack_Engineer_Course/10_Model_Serving/01_FastAPI.ipynb) | Model APIs, validation, async vs sync, testing (with a Flask comparison) |
+| 02 | [Docker & CI/CD](AI_Full_Stack_Engineer_Course/10_Model_Serving/02_Docker_and_CI_CD.ipynb) | Dockerfiles for ML, GitHub Actions, load testing |
+| 03 | [BentoML](AI_Full_Stack_Engineer_Course/10_Model_Serving/03_BentoML.ipynb) | Services, adaptive batching, packaging |
+| 04 | [Ray Serve](AI_Full_Stack_Engineer_Course/10_Model_Serving/04_Ray_Serve.ipynb) *(optional)* | Deployments, composition, autoscaling |
 
-- [01 Flask](AI_Full_Stack_Engineer_Course/10_Model_Serving/01_Flask.ipynb)
-- [02 FastAPI](AI_Full_Stack_Engineer_Course/10_Model_Serving/02_FastAPI.ipynb)
-- [03 BentoML](AI_Full_Stack_Engineer_Course/10_Model_Serving/03_BentoML.ipynb)
-- [04 Ray Serve](AI_Full_Stack_Engineer_Course/10_Model_Serving/04_Ray_Serve.ipynb)
+**Data Processing** · [`11_Data_Processing/`](AI_Full_Stack_Engineer_Course/11_Data_Processing/)
 
-[`AI_Full_Stack_Engineer_Course/11_Data_Processing/`](AI_Full_Stack_Engineer_Course/11_Data_Processing/) — *When your data is bigger than your RAM.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Polars](AI_Full_Stack_Engineer_Course/11_Data_Processing/01_Polars.ipynb) | Expressions, lazy queries, pushdown, fair benchmarks |
+| 02 | [PySpark](AI_Full_Stack_Engineer_Course/11_Data_Processing/02_PySpark.ipynb) | Spark 4, joins and shuffles, AQE, skew, MLlib |
+| 03 | [Dask](AI_Full_Stack_Engineer_Course/11_Data_Processing/03_Dask.ipynb) *(optional)* | Partitions, task graphs, distributed scheduler |
 
-- [01 Polars](AI_Full_Stack_Engineer_Course/11_Data_Processing/01_Polars.ipynb)
-- [02 Dask](AI_Full_Stack_Engineer_Course/11_Data_Processing/02_Dask.ipynb)
-- [03 PySpark](AI_Full_Stack_Engineer_Course/11_Data_Processing/03_PySpark.ipynb)
+**AutoML & Experimentation** · [`12_AutoML_Experimentation/`](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/)
 
-[`AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/`](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/) — *Hyperparameter search and AutoML.*
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Optuna](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/01_Optuna.ipynb) | TPE, pruning, multi-objective tuning, tuning without leakage |
+| 02 | [Ray Tune](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/02_Ray_Tune.ipynb) | Distributed tuning, ASHA, population-based training |
+| 03 | [AutoGluon](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/03_AutoGluon.ipynb) *(optional)* | Strong tabular baselines in minutes |
 
-- [01 Optuna](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/01_Optuna.ipynb)
-- [02 Ray Tune](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/02_Ray_Tune.ipynb)
-- [03 AutoGluon](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/03_AutoGluon.ipynb)
-- [04 H2O](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/04_H2O.ipynb)
+### Phase 8 — Capstones, Templates & Interview Prep
 
-### Phase 7 — Capstones & Templates
+**Capstone projects** · [`13_Capstone_Projects/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/) — each one is a notebook walkthrough **plus a real project folder** with code, tests, and a Dockerfile you can put on your résumé.
 
-[`AI_Full_Stack_Engineer_Course/13_Capstone_Projects/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/) — *Three end-to-end projects you can put on your resume.*
+| # | Project |
+|---|---|
+| 01 | [End-to-End ML Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb) |
+| 02 | [End-to-End DL Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb) |
+| 03 | [LLM RAG Assistant](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_RAG_Assistant_Project.ipynb) |
+| 04 | [AI Agent](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/04_AI_Agent_Project.ipynb) |
 
-- [01 End-to-End ML Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb)
-- [02 End-to-End DL Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb)
-- [03 LLM Application Project (RAG + FastAPI)](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_Application_Project.ipynb)
+**Templates** · [`14_Templates/`](AI_Full_Stack_Engineer_Course/14_Templates/) — fill-in starters: [ML](AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb) · [DL](AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb) · [LLM](AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
 
-[`AI_Full_Stack_Engineer_Course/14_Templates/`](AI_Full_Stack_Engineer_Course/14_Templates/) — *Copy-paste starter kits for your own projects.*
+**Interview Prep** · [`15_Interview_Prep/`](AI_Full_Stack_Engineer_Course/15_Interview_Prep/)
 
-- [01 ML Template](AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb)
-- [02 DL Template](AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb)
-- [03 LLM Template](AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
-
----
-
-## Optional 16-week schedule (about 8–10 hours/week)
-
-A realistic part-time pace. Speed up if you have prior experience, slow down if you are brand new to programming.
-
-- **Week 1 — Foundations I.** `00_Foundations/01_Python_Basics`, `02_Python_Builtins`.
-- **Week 2 — Foundations II.** `00_Foundations/03_OOP_in_Python`, `04_Virtual_Env_and_Packaging`.
-- **Week 3 — Numerical Python.** `01_Core_Scientific_Computing/01_NumPy`, `02_Pandas`.
-- **Week 4 — Stats + Visualization.** `01_Core_Scientific_Computing/03_SciPy`, `02_Data_Visualization/01_Matplotlib`, `02_Seaborn`. (Skim `03_Plotly`, `04_Bokeh`, `05_Altair`.)
-- **Week 5 — Classical ML I.** `03_Classical_Machine_Learning/01_Scikit_Learn`.
-- **Week 6 — Classical ML II.** `03_Classical_Machine_Learning/02_XGBoost`, `03_LightGBM`, `04_CatBoost`.
-- **Week 7 — Deep Learning I.** `04_Deep_Learning/01_PyTorch`.
-- **Week 8 — Deep Learning II.** `04_Deep_Learning/02_TensorFlow`, `03_Keras`. (Skim `04_JAX`.)
-- **Week 9 — NLP.** `05_NLP/01_NLTK` → `05_Transformers`. Pick depth based on interest.
-- **Week 10 — Computer Vision.** `06_Computer_Vision/01_OpenCV`, `02_Torchvision`, `03_YOLO_Ultralytics`. (Optional: `04_Detectron2`.)
-- **Week 11 — Generative AI / LLMs.** `08_Generative_AI_LLM/01_OpenAI_SDK`, `02_LangChain`, `03_LlamaIndex`.
-- **Week 12 — Experiment Tracking + Tuning.** `09_MLOps/01_MLflow` (or `02_Weights_and_Biases`), `12_AutoML_Experimentation/01_Optuna`.
-- **Week 13 — Model Serving.** `10_Model_Serving/02_FastAPI`, `03_BentoML`.
-- **Week 14 — Big Data + Pipelines.** `11_Data_Processing/01_Polars`, then either `02_Dask` or `03_PySpark`. `09_MLOps/04_Airflow`.
-- **Week 15 — Capstone (pick one).** `13_Capstone_Projects/01_End_to_End_ML_Project` or `02_End_to_End_DL_Project` or `03_LLM_Application_Project`.
-- **Week 16 — Polish & ship.** Push your capstone to GitHub, write a blog post, deploy the API, and update LinkedIn.
-
-Optional / advanced (revisit anytime): `07_Reinforcement_Learning/`, `08_Generative_AI_LLM/04_vLLM` & `05_DeepSpeed`, `09_MLOps/03_DVC` & `05_Kubeflow`.
+| # | Notebook | Round it prepares you for |
+|---|---|---|
+| 01 | [ML Coding Drills](AI_Full_Stack_Engineer_Course/15_Interview_Prep/01_ML_Coding_Drills.ipynb) | "Implement X in NumPy/PyTorch" coding rounds |
+| 02 | [ML Theory & Statistics Questions](AI_Full_Stack_Engineer_Course/15_Interview_Prep/02_ML_Theory_and_Statistics_Questions.ipynb) | Conceptual ML/stats screens |
+| 03 | [ML System Design](AI_Full_Stack_Engineer_Course/15_Interview_Prep/03_ML_System_Design.ipynb) | Recommenders, fraud, search ranking design rounds |
+| 04 | [LLM System Design](AI_Full_Stack_Engineer_Course/15_Interview_Prep/04_LLM_System_Design.ipynb) | RAG, agents, evaluation, cost/latency design rounds |
+| 05 | [Behavioral & Project Storytelling](AI_Full_Stack_Engineer_Course/15_Interview_Prep/05_Behavioral_and_Project_Storytelling.ipynb) | "Walk me through your project" and behavioral rounds |
 
 ---
 
-## Goal-based mini-tracks
+## Study plans
 
-Short on time? Pick a track and only do these modules.
+### Full course — about 24 weeks at 8–10 hours/week
 
-### Track A — Become a Machine Learning Engineer
+| Weeks | Focus |
+|---|---|
+| 1–3 | Foundations (00) |
+| 4–7 | NumPy, Pandas, SQL, Math, Statistics, Visualization (01–02) |
+| 8–10 | Classical ML (03) |
+| 11–13 | Deep Learning (04) |
+| 14–16 | NLP, Computer Vision, RL — pick the ones that match your goal (05–07) |
+| 17–19 | Generative AI & LLMs (08) |
+| 20–22 | MLOps, Serving, Data Processing, AutoML (09–12) |
+| 23–24 | One capstone + Interview Prep (13, 15) |
 
-`00_Foundations/` → `01_Core_Scientific_Computing/` → `02_Data_Visualization/` (just `01_Matplotlib` + `02_Seaborn`) → `03_Classical_Machine_Learning/` → `12_AutoML_Experimentation/01_Optuna` → `09_MLOps/01_MLflow` → `10_Model_Serving/02_FastAPI` → `13_Capstone_Projects/01_End_to_End_ML_Project` → `14_Templates/01_ML_Template`
+### Goal-based tracks
 
-### Track B — Become an LLM / GenAI Engineer
-
-`00_Foundations/` → `01_Core_Scientific_Computing/01_NumPy` & `02_Pandas` → `04_Deep_Learning/01_PyTorch` → `05_NLP/04_SentenceTransformers` & `05_Transformers` → `08_Generative_AI_LLM/` (all 5) → `10_Model_Serving/02_FastAPI` → `13_Capstone_Projects/03_LLM_Application_Project` → `14_Templates/03_LLM_Template`
-
-### Track C — Become an MLOps Engineer
-
-`00_Foundations/` → `01_Core_Scientific_Computing/02_Pandas` → `03_Classical_Machine_Learning/01_Scikit_Learn` → `09_MLOps/` (all 5) → `10_Model_Serving/` (all 4) → `11_Data_Processing/` (all 3) → `12_AutoML_Experimentation/01_Optuna` & `02_Ray_Tune` → `13_Capstone_Projects/01_End_to_End_ML_Project`
-
-### Track D — Become a Computer Vision Engineer
-
-`00_Foundations/` → `01_Core_Scientific_Computing/01_NumPy` → `02_Data_Visualization/01_Matplotlib` → `04_Deep_Learning/01_PyTorch` → `06_Computer_Vision/` (all 4) → `09_MLOps/01_MLflow` → `10_Model_Serving/02_FastAPI` → `13_Capstone_Projects/02_End_to_End_DL_Project`
+- **ML Engineer:** 00 → 01 → 02/01 → 03 → 04/01–02 → 09/01, 03, 05 → 10/01–02 → 12/01 → Capstone 01 → 15/01–03
+- **LLM / GenAI Engineer:** 00 → 01/01–02, 04 → 03/01 → 04/01–03 → 05/02–03 → 08 (all) → 10/01–02 → Capstones 03–04 → 15/01, 04–05
+- **MLOps Engineer:** 00 → 01/02–03 → 03/02 → 09 (all) → 10 (all) → 11/01–02 → 12/01 → Capstone 01 → 15/03
+- **Computer Vision Engineer:** 00 → 01/01, 04 → 02/01 → 04/01–02 → 06 (all) → 09/01 → 10/01–02 → Capstone 02
+- **Interview sprint (4 weeks, if you already know the basics):** every 🔧 *Build It From Scratch* section in modules 01–04 and 08 → all Interview Q&A sections → module 15
 
 ---
 
 ## Getting started
 
-### 1. Clone the repo
+### 1. Clone
 
 ```bash
-git clone https://github.com/<your-github-username>/Learning-AI-ML.git
+git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git
 cd Learning-AI-ML
 ```
 
-### 2. Create a virtual environment
+### 2. Create an environment (Python 3.12)
+
+Using [uv](https://docs.astral.sh/uv/) (recommended):
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate          # macOS / Linux
-# .venv\Scripts\activate           # Windows PowerShell
+uv venv --python 3.12
+source .venv/bin/activate            # Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
 ```
 
-### 3. Install Jupyter
+Or with the standard library: `python3.12 -m venv .venv`, activate it, then `pip install -r requirements.txt`.
+
+A few notebooks need tools that conflict with the main environment, so they have their own requirement files (`requirements-airflow.txt`, `requirements-kfp.txt`, `requirements-monitoring.txt`, `requirements-autogluon.txt`, `requirements-llamaindex.txt`). Each notebook's Setup section tells you which one to use.
+
+### 3. System extras (only for the notebooks that need them)
+
+| Needed for | macOS | Ubuntu |
+|---|---|---|
+| XGBoost / LightGBM | `brew install libomp` | usually preinstalled |
+| PySpark | `brew install openjdk@17` | `sudo apt install openjdk-17-jdk` |
+| Docker & CI/CD notebook | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | Docker Engine |
+| Local LLM for module 08 | `brew install llama.cpp` | build [llama.cpp](https://github.com/ggml-org/llama.cpp) |
+
+### 4. Local LLM (no API keys needed)
 
 ```bash
-pip install --upgrade pip
-pip install jupyterlab ipykernel
+llama-server -hf ggml-org/gpt-oss-20b-GGUF --port 8080 --jinja
 ```
 
-Each notebook has its own `pip install ...` cell at the top for the libraries it needs, so you only install what you actually use.
+The LLM notebooks read three environment variables, so you can point them at any OpenAI-compatible server:
 
-### 4. Launch Jupyter and open your first notebook
+| Variable | Default | Example alternatives |
+|---|---|---|
+| `LLM_BASE_URL` | `http://127.0.0.1:8080/v1` | Ollama `http://localhost:11434/v1` · OpenAI `https://api.openai.com/v1` |
+| `LLM_MODEL` | `gpt-oss-20b` | any model your server provides |
+| `LLM_API_KEY` | `local` | your provider key |
+
+### 5. Launch
 
 ```bash
 jupyter lab
 ```
 
-Open [`AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and you are off.
+Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and start typing.
 
-> **Tip:** If you have an NVIDIA GPU, you can install the GPU build of PyTorch / TensorFlow when you reach Phase 4 — the notebooks call out the relevant install commands.
+> **Tip:** You learn by typing the code and solving the ✍️ exercises yourself — resist opening the solutions until you've tried.
 
 ---
 
-## How to use each notebook
+## For contributors
 
-Every notebook follows the same structure so you build a learning rhythm:
+Notebooks are authored as [jupytext](https://jupytext.readthedocs.io/) scripts and checked with [`tools/nb.py`](tools/nb.py):
 
-1. **Read the markdown overview** — what you will learn, difficulty, time estimate.
-2. **Run the install cell** — installs only the libraries this notebook needs.
-3. **Work through the sections** — short concept blocks alternating with runnable code.
-4. **Do the mini-project** — the most important part. Don't skip it.
-5. **Review the Interview Q&A section** — this is what hiring managers actually ask.
-6. **Skim the Resources section** — official docs and the next thing to read.
+```bash
+python tools/nb.py build my_notebook.py AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb
+python tools/nb.py run   AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb              # execute, save outputs
+python tools/nb.py run   AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb --solutions  # every solution must pass
+python tools/nb.py check AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb              # template structure
+python tools/nb.py links AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb --titles     # links and titles
+```
 
-You learn by *typing the code yourself*, not by reading it.
+A GitHub Actions workflow runs the structure check on every pull request and the link check weekly. See [docs/NOTEBOOK_TEMPLATE.md](docs/NOTEBOOK_TEMPLATE.md) and [docs/COURSE_MAP.md](docs/COURSE_MAP.md).
 
 ---
 
@@ -287,36 +311,39 @@ You learn by *typing the code yourself*, not by reading it.
 
 ```
 Learning-AI-ML/
-├── README.md                              <- you are here
+├── README.md
+├── LICENSE
+├── requirements*.txt
+├── docs/                                  template spec and course map
+├── tools/nb.py                            build / run / check / link-check notebooks
 └── AI_Full_Stack_Engineer_Course/
-    ├── 00_Foundations/                    Python, OOP, packaging
-    ├── 01_Core_Scientific_Computing/      NumPy, Pandas, SciPy
-    ├── 02_Data_Visualization/             Matplotlib, Seaborn, Plotly, Bokeh, Altair
-    ├── 03_Classical_Machine_Learning/     scikit-learn, XGBoost, LightGBM, CatBoost
-    ├── 04_Deep_Learning/                  PyTorch, TensorFlow, Keras, JAX
-    ├── 05_NLP/                            NLTK, spaCy, Gensim, SentenceTransformers, Transformers
-    ├── 06_Computer_Vision/                OpenCV, Torchvision, YOLO, Detectron2
-    ├── 07_Reinforcement_Learning/         Gymnasium, Stable Baselines3, RLlib
-    ├── 08_Generative_AI_LLM/              OpenAI SDK, LangChain, LlamaIndex, vLLM, DeepSpeed
-    ├── 09_MLOps/                          MLflow, W&B, DVC, Airflow, Kubeflow
-    ├── 10_Model_Serving/                  Flask, FastAPI, BentoML, Ray Serve
-    ├── 11_Data_Processing/                Polars, Dask, PySpark
-    ├── 12_AutoML_Experimentation/         Optuna, Ray Tune, AutoGluon, H2O
-    ├── 13_Capstone_Projects/              End-to-end ML / DL / LLM projects
-    └── 14_Templates/                      Copy-paste starter kits
+    ├── 00_Foundations/                    Python, internals, packaging
+    ├── 01_Core_Scientific_Computing/      NumPy, Pandas, SQL, math, statistics
+    ├── 02_Data_Visualization/             Matplotlib & Seaborn, Plotly
+    ├── 03_Classical_Machine_Learning/     from scratch, scikit-learn, gradient boosting
+    ├── 04_Deep_Learning/                  NNs & transformers from scratch, PyTorch, Keras
+    ├── 05_NLP/                            classical NLP, embeddings, Hugging Face
+    ├── 06_Computer_Vision/                OpenCV, CNNs, YOLO
+    ├── 07_Reinforcement_Learning/         tabular RL, deep RL
+    ├── 08_Generative_AI_LLM/              APIs, RAG, LangGraph, agents & MCP, evaluation, fine-tuning, serving
+    ├── 09_MLOps/                          MLflow, W&B, DVC, Airflow, monitoring, Kubeflow
+    ├── 10_Model_Serving/                  FastAPI, Docker & CI/CD, BentoML, Ray Serve
+    ├── 11_Data_Processing/                Polars, PySpark, Dask
+    ├── 12_AutoML_Experimentation/         Optuna, Ray Tune, AutoGluon
+    ├── 13_Capstone_Projects/              4 end-to-end projects with real code
+    ├── 14_Templates/                      starter notebooks
+    └── 15_Interview_Prep/                 coding drills, theory, system design, storytelling
 ```
 
 ---
 
-## Recommended companion resources
+## Companion resources
 
-These pair well with this course for theory & intuition:
-
-- [3Blue1Brown — Neural Networks (YouTube series)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) — the best visual explanation of how NNs learn.
-- [fast.ai — Practical Deep Learning](https://course.fast.ai/) — a great top-down DL course.
-- [Andrej Karpathy — Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) — build GPT from scratch.
-- [Hugging Face Course](https://huggingface.co/learn) — Transformers, NLP, diffusion.
-- [Made With ML by Goku Mohandas](https://madewithml.com/) — MLOps best practices.
+- [3Blue1Brown — Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) — the best visual explanation of how neural networks learn
+- [Andrej Karpathy — Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) — build GPT from scratch
+- [fast.ai — Practical Deep Learning](https://course.fast.ai/) — top-down deep learning
+- [Hugging Face Learn](https://huggingface.co/learn) — LLMs, agents, and more
+- [Made With ML](https://madewithml.com/) — MLOps best practices
 
 ---
 
@@ -332,14 +359,10 @@ If this course helps you, I would love to hear about it. Connect with me, ask qu
 
 ## Contributing & feedback
 
-Found a typo, broken link, or have a suggestion? Open an [issue](../../issues) or send a pull request. Suggestions for new notebooks (libraries, topics, or capstones) are very welcome.
+Found a bug, a dead link, or have an idea for a notebook? Open an [issue](../../issues) or a pull request — the checks in [`tools/nb.py`](tools/nb.py) tell you whether a notebook meets the template.
 
-If a notebook helped you land a job, learn a concept, or just made you smile — a [star on this repo](../../stargazers) means a lot.
+If a notebook helped you learn something or land a job, a [star on the repo](../../stargazers) means a lot.
 
 ## License
 
-This course is released under the [MIT License](LICENSE). You are free to use, modify, and share it — including for commercial work — as long as you keep the copyright notice. If you build something cool with it, please credit back.
-
----
-
-If this course adds value to your learning journey, please star the repo and share it with one person who is just starting out. That is how this gets to the people who need it.
+Released under the [MIT License](LICENSE).

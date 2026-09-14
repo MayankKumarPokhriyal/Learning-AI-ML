@@ -1,70 +1,78 @@
 # Course Map (v2 — interview-ready)
 
-Beginner-first order. ⭐ = new notebook, 🔀 = merged from older notebooks, (optional) = skim or skip if short on time.
+Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEMPLATE.md), was executed end to end with real outputs, and passes `tools/nb.py check`, `run --solutions`, and link checks.
 
-| Module | Notebook | Status |
-|---|---|---|
-| **00 Foundations** | 01_Python_Basics | rewrite |
-| | 02_Python_Builtins | rewrite |
-| | 03_OOP_in_Python | rewrite |
-| | 04_Virtual_Env_and_Packaging | rewrite (uv, pyproject) |
-| | 05_Python_Internals_and_Concurrency | ⭐ mutability, closures, GIL, threads/processes/asyncio |
-| **01 Core Scientific Computing** | 01_NumPy | rewrite (pilot) |
-| | 02_Pandas | rewrite |
-| | 03_SQL_with_DuckDB | ⭐ joins, window functions, SQL ↔ pandas |
-| | 04_Math_for_ML | ⭐ vectors, matrices, derivatives, gradients, intuition |
-| | 05_Statistics_and_Probability | rewrite of 03_SciPy (CLT, tests, power, bootstrap, A/B) |
-| **02 Data Visualization** | 01_Matplotlib_and_Seaborn | 🔀 Matplotlib + Seaborn |
-| | 02_Plotly | rewrite (optional) |
-| **03 Classical ML** | 01_ML_Fundamentals_From_Scratch | ⭐ regression, logistic, bias-variance, regularization, metrics |
-| | 02_Scikit_Learn | rewrite |
-| | 03_Gradient_Boosting | 🔀 XGBoost + LightGBM + CatBoost, boosting from scratch |
-| **04 Deep Learning** | 01_Neural_Networks_From_Scratch | ⭐ autograd + MLP in NumPy |
-| | 02_PyTorch | rewrite |
-| | 03_Transformers_From_Scratch | ⭐ attention, positional encoding, mini-GPT, KV cache |
-| | 04_Keras_3_Overview | 🔀 replaces TensorFlow + Keras (optional) |
-| **05 NLP** | 01_Classical_NLP | 🔀 NLTK + spaCy + Gensim |
-| | 02_Embeddings_and_Semantic_Search | rewrite of SentenceTransformers |
-| | 03_HuggingFace_Transformers | rewrite (fine-tuning with current Trainer API) |
-| **06 Computer Vision** | 01_OpenCV | rewrite |
-| | 02_CNNs_and_Transfer_Learning | rewrite of Torchvision |
-| | 03_YOLO_Object_Detection | rewrite (real training, IoU/NMS/mAP from scratch) |
-| **07 Reinforcement Learning** | 01_Gymnasium_and_Q_Learning | rewrite |
-| | 02_Deep_RL_with_Stable_Baselines3 | rewrite (+ REINFORCE from scratch) |
-| **08 Generative AI & LLMs** | 01_LLM_APIs_and_Prompting | rewrite of OpenAI SDK (multi-provider, structured output, streaming, cost) |
-| | 02_RAG_From_Scratch | ⭐ chunking, hybrid search, reranking, citations |
-| | 03_LangChain_and_LangGraph | rewrite |
-| | 04_LlamaIndex | rewrite |
-| | 05_Agents_Tool_Calling_and_MCP | ⭐ |
-| | 06_LLM_Evaluation | ⭐ golden sets, retrieval metrics, LLM-as-judge |
-| | 07_Fine_Tuning_LoRA_and_DPO | ⭐ |
-| | 08_LLM_Inference_and_Serving | rewrite of vLLM (KV cache math, batching, quantization) |
-| | 09_Distributed_Training_Overview | 🔀 DeepSpeed/FSDP condensed (optional) |
-| **09 MLOps** | 01_MLflow | rewrite (aliases, tracing) |
-| | 02_Weights_and_Biases | rewrite (optional) |
-| | 03_DVC | rewrite (real pipeline) |
-| | 04_Airflow | rewrite (Airflow 3, TaskFlow) |
-| | 05_Model_Monitoring_and_Drift | ⭐ |
-| | 06_Kubeflow_Pipelines | rewrite (KFP v2, local runner) (optional) |
-| **10 Model Serving** | 01_FastAPI | 🔀 FastAPI (+ Flask comparison) |
-| | 02_Docker_and_CI_CD | ⭐ |
-| | 03_BentoML | rewrite (1.2+ API) |
-| | 04_Ray_Serve | rewrite (optional) |
-| **11 Data Processing** | 01_Polars | rewrite |
-| | 02_PySpark | rewrite (Spark 4) |
-| | 03_Dask | rewrite (optional) |
-| **12 AutoML & Experimentation** | 01_Optuna | rewrite |
-| | 02_Ray_Tune | rewrite (Tuner API) |
-| | 03_AutoGluon | rewrite (optional) |
-| **13 Capstone Projects** | 01_End_to_End_ML_Project | rewrite + real service code |
-| | 02_End_to_End_DL_Project | rewrite + real code |
-| | 03_LLM_RAG_Assistant_Project | rewrite + real service code |
-| | 04_AI_Agent_Project | ⭐ + real code |
-| **14 Templates** | 01_ML_Template · 02_DL_Template · 03_LLM_Template | rewrite |
-| **15 Interview Prep** | 01_ML_Coding_Drills | ⭐ |
-| | 02_ML_Theory_and_Statistics_Questions | ⭐ |
-| | 03_ML_System_Design | ⭐ |
-| | 04_LLM_System_Design | ⭐ |
-| | 05_Behavioral_and_Project_Storytelling | ⭐ |
+**Kinds:** topic (standard template) · capstone (walkthrough + real project folder) · template (copy-and-fill starter) · prep (interview prep).
+**Environments:** `core` = `requirements.txt`; others have their own `requirements-<env>.txt` and a separate virtual environment.
+*(optional)* = useful but rarely needed for interviews.
 
-**Removed** (low interview value or outdated): Bokeh, Altair, TensorFlow and JAX notebooks (Keras 3 overview covers the idea), Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI).
+| Module | Notebook | Kind | Env |
+|---|---|---|---|
+| **00 Foundations** | 01_Python_Basics | topic | core |
+| | 02_Python_Builtins | topic | core |
+| | 03_OOP_in_Python | topic | core |
+| | 04_Virtual_Env_and_Packaging | topic | core |
+| | 05_Python_Internals_and_Concurrency | topic | core |
+| **01 Core Scientific Computing** | 01_NumPy | topic | core |
+| | 02_Pandas | topic | core |
+| | 03_SQL_with_DuckDB | topic | core |
+| | 04_Math_for_ML | topic | core |
+| | 05_Statistics_and_Probability | topic | core |
+| **02 Data Visualization** | 01_Matplotlib_and_Seaborn | topic | core |
+| | 02_Plotly *(optional)* | topic | core |
+| **03 Classical ML** | 01_ML_Fundamentals_From_Scratch | topic | core |
+| | 02_Scikit_Learn | topic | core |
+| | 03_Gradient_Boosting | topic | core |
+| **04 Deep Learning** | 01_Neural_Networks_From_Scratch | topic | core |
+| | 02_PyTorch | topic | core |
+| | 03_Transformers_From_Scratch | topic | core |
+| | 04_Keras_3_Overview *(optional)* | topic | core |
+| **05 NLP** | 01_Classical_NLP | topic | core |
+| | 02_Embeddings_and_Semantic_Search | topic | core |
+| | 03_HuggingFace_Transformers | topic | core |
+| **06 Computer Vision** | 01_OpenCV | topic | core |
+| | 02_CNNs_and_Transfer_Learning | topic | core |
+| | 03_YOLO_Object_Detection | topic | core |
+| **07 Reinforcement Learning** | 01_Gymnasium_and_Q_Learning | topic | core |
+| | 02_Deep_RL_with_Stable_Baselines3 | topic | core |
+| **08 Generative AI & LLMs** | 01_LLM_APIs_and_Prompting | topic | core + local LLM |
+| | 02_RAG_From_Scratch | topic | core + local LLM |
+| | 03_LangChain_and_LangGraph | topic | core + local LLM |
+| | 04_LlamaIndex | topic | llamaindex + local LLM |
+| | 05_Agents_Tool_Calling_and_MCP | topic | core + local LLM |
+| | 06_LLM_Evaluation | topic | core + local LLM |
+| | 07_Fine_Tuning_LoRA_and_DPO | topic | core |
+| | 08_LLM_Inference_and_Serving | topic | core + llama.cpp |
+| | 09_Distributed_Training_Overview *(optional)* | topic | core |
+| **09 MLOps** | 01_MLflow | topic | core |
+| | 02_Weights_and_Biases *(optional)* | topic | core |
+| | 03_DVC | topic | core |
+| | 04_Airflow | topic | airflow |
+| | 05_Model_Monitoring_and_Drift | topic | monitoring |
+| | 06_Kubeflow_Pipelines *(optional)* | topic | kfp |
+| **10 Model Serving** | 01_FastAPI | topic | core |
+| | 02_Docker_and_CI_CD | topic | core + Docker |
+| | 03_BentoML | topic | core |
+| | 04_Ray_Serve *(optional)* | topic | core |
+| **11 Data Processing** | 01_Polars | topic | core |
+| | 02_PySpark | topic | core + Java 17 |
+| | 03_Dask *(optional)* | topic | core |
+| **12 AutoML & Experimentation** | 01_Optuna | topic | core |
+| | 02_Ray_Tune | topic | core |
+| | 03_AutoGluon *(optional)* | topic | autogluon |
+| **13 Capstone Projects** | 01_End_to_End_ML_Project + `churn_service/` | capstone | core |
+| | 02_End_to_End_DL_Project + `image_classifier/` | capstone | core |
+| | 03_LLM_RAG_Assistant_Project + `rag_assistant/` | capstone | core + local LLM |
+| | 04_AI_Agent_Project + `ai_agent/` | capstone | core + local LLM |
+| **14 Templates** | 01_ML_Template | template | core |
+| | 02_DL_Template | template | core |
+| | 03_LLM_Template | template | core + local LLM |
+| **15 Interview Prep** | 01_ML_Coding_Drills | prep | core |
+| | 02_ML_Theory_and_Statistics_Questions | prep | core |
+| | 03_ML_System_Design | prep | core |
+| | 04_LLM_System_Design | prep | core + local LLM |
+| | 05_Behavioral_and_Project_Storytelling | prep | core |
+
+**Removed from v1** (low interview value or outdated): Bokeh, Altair, TensorFlow, standalone Keras 2, JAX, Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI), DeepSpeed (condensed into Distributed Training Overview). The v1 notebooks remain available on the `main` branch.
+
+**Honest skips:** a few cells print a `⏭️ Skipped` message instead of running, because they need hardware or services this laptop didn't have: CUDA GPUs (QLoRA, vLLM, DeepSpeed), hosted-LLM API keys (OpenAI/Anthropic/Gemini/LangSmith/W&B sweeps), a running Docker daemon (capstone container builds), or a Kubernetes cluster. Each message says exactly what to set up to run it.
