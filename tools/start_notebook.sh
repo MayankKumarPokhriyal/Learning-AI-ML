@@ -52,8 +52,8 @@ Kernels ready:
       09_MLOps/05_Model_Monitoring_and_Drift   → AI course: monitoring env
       09_MLOps/06_Kubeflow_Pipelines           → AI course: kfp env
       12_AutoML_Experimentation/03_AutoGluon   → AI course: autogluon env
-  • Module 08 and the LLM capstones also need the local LLM server:
-      llama-server -m ~/.hermes/models/gpt-oss-20b-MXFP4.gguf --port 8080 --jinja
+  • Module 08 and the LLM capstones also need a local LLM server (see README → Local LLM):
+      llama-server -hf ggml-org/gpt-oss-20b-GGUF --port 8080 --jinja
 MSG
 
 cd "$REPO/AI_Full_Stack_Engineer_Course"

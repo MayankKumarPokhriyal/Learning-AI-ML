@@ -96,6 +96,6 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 
 **Study plan:** [STUDY_PLAN.md](STUDY_PLAN.md) orders all 83 notebooks week by week. **Flashcards:** `python tools/export_flashcards.py` exports every interview question as an Anki CSV.
 
-**Removed from v1** (low interview value or outdated): Bokeh, Altair, TensorFlow, standalone Keras 2, JAX, Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI), DeepSpeed (condensed into Distributed Training Overview). The v1 notebooks remain available on the `main` branch.
+**Removed from v1** (low interview value or outdated): Bokeh, Altair, TensorFlow, standalone Keras 2, JAX, Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI), DeepSpeed (condensed into Distributed Training Overview). The original v1 notebooks are preserved under the git tag `v1-archive` (`git checkout v1-archive` to browse them).
 
 **Honest skips:** a few cells print a `⏭️ Skipped` message instead of running, because they need hardware or services this laptop didn't have: CUDA GPUs (QLoRA, vLLM, DeepSpeed), hosted-LLM API keys (OpenAI/Anthropic/Gemini/LangSmith/W&B sweeps), a running Docker daemon (capstone container builds), or a Kubernetes cluster. Each message says exactly what to set up to run it.

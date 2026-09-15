@@ -289,61 +289,165 @@ This exports every 🎤 interview question in the course, with its answer, as a 
 
 ## Getting started
 
-### 1. Clone
+Setup takes about 15–30 minutes, most of it downloading packages. You need no API keys and no GPU.
+
+### What you need
+
+| | |
+|---|---|
+| **Operating system** | **macOS 14 (Sonoma) or newer on Apple Silicon**, **Linux** (x86-64 or ARM64), or **Windows 10/11** (x86-64). Intel Macs are not supported, because current PyTorch, Ray and FAISS publish no Intel-Mac packages. Use a Linux machine or a cloud VM instead. |
+| **Memory** | 16 GB RAM recommended; 8 GB works for most notebooks if you run one at a time. The optional 20B local LLM for module 08 needs about 16 GB by itself (smaller models work too — see [Local LLM](#6-optional-local-llm-for-module-08)). |
+| **Disk** | About 12 GB: 4 GB for the main environment, plus 8 GB of datasets and models downloaded as you progress. Doing everything takes about 30 GB, including the optional environments (3.5 GB) and the local LLM (12 GB). |
+| **Software** | [Git](https://git-scm.com/downloads) and [uv](https://docs.astral.sh/uv/getting-started/installation/). uv installs Python 3.12 for you. |
+
+Install uv if you don't have it:
 
 ```bash
-git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git
-cd Learning-AI-ML
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-### 2. Create an environment (Python 3.12)
+### 1. Fork and clone
 
-Using [uv](https://docs.astral.sh/uv/) (recommended):
+Click **Fork** at the top of this page (so you can save your own answers and progress), then:
+
+```bash
+git clone https://github.com/<your-username>/Learning-AI-ML.git
+cd Learning-AI-ML
+git checkout -b my-learning     # keep your answers on your own branch
+```
+
+Just want to read? `git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git` works too.
+
+### 2. Create the main environment
 
 ```bash
 uv venv --python 3.12
-source .venv/bin/activate            # Windows: .venv\Scripts\activate
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
 uv pip install -r requirements.txt
 ```
 
-Or with the standard library: `python3.12 -m venv .venv`, activate it, then `pip install -r requirements.txt`.
+- **Linux without an NVIDIA GPU:** add `--torch-backend=cpu` to the install command. It downloads the CPU build of PyTorch instead of several GB of CUDA libraries.
+- **No uv?** Run `python3.12 -m venv .venv`, activate it, then `pip install -r requirements.txt`.
 
-A few notebooks need tools that conflict with the main environment, so they have their own requirement files (`requirements-airflow.txt`, `requirements-kfp.txt`, `requirements-monitoring.txt`, `requirements-autogluon.txt`, `requirements-llamaindex.txt`). Each notebook's Setup section tells you which one to use.
+This one environment runs every notebook except the five listed in step 4.
 
-### 3. System extras (only for the notebooks that need them)
+### 3. Check your setup
 
-| Needed for | macOS | Ubuntu |
-|---|---|---|
-| XGBoost / LightGBM | `brew install libomp` | usually preinstalled |
-| PySpark | `brew install openjdk@17` | `sudo apt install openjdk-17-jdk` |
-| Docker & CI/CD notebook | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | Docker Engine |
-| Local LLM for module 08 | `brew install llama.cpp` | build [llama.cpp](https://github.com/ggml-org/llama.cpp) |
+```bash
+python tools/check_setup.py
+```
 
-### 4. Local LLM (no API keys needed)
+The check:
+
+- confirms Python 3.12 and every pinned package;
+- test-imports the libraries that need native code (PyTorch, XGBoost, LightGBM, FAISS, spaCy, OpenCV);
+- checks that Jupyter will use this environment;
+- reports which optional pieces (Java, Docker, a local LLM, the extra environments) you still need, and for which notebooks.
+
+Fix anything marked ❌ before you start. Anything marked ⏭️ can wait until you reach the notebook that needs it.
+
+### 4. Optional: separate environments for five notebooks
+
+These notebooks need library versions that conflict with the main environment, so each gets its own small environment. Create one only when you reach that notebook:
+
+| Notebook | Environment |
+|---|---|
+| `08_Generative_AI_LLM/04_LlamaIndex` | `llamaindex` |
+| `09_MLOps/04_Airflow` | `airflow` (on Windows, use [WSL2](https://learn.microsoft.com/windows/wsl/install): Airflow doesn't run natively on Windows) |
+| `09_MLOps/05_Model_Monitoring_and_Drift` | `monitoring` |
+| `09_MLOps/06_Kubeflow_Pipelines` | `kfp` |
+| `12_AutoML_Experimentation/03_AutoGluon` | `autogluon` |
+
+```bash
+# replace airflow with the environment you need
+uv venv .venvs/airflow --python 3.12
+uv pip install --python .venvs/airflow -r requirements-airflow.txt
+```
+
+Keep the `.venvs/<name>` folder names. On macOS and Linux, the launcher in step 7 finds them and adds a kernel for each one. On Windows, register the kernel yourself:
+
+```powershell
+.venvs\airflow\Scripts\python -m ipykernel install --user --name ai-course-airflow --display-name "AI course: airflow env"
+```
+
+### 5. Optional: system tools for a few notebooks
+
+| Needed for | macOS | Ubuntu / Debian | Windows |
+|---|---|---|---|
+| XGBoost / LightGBM | `brew install libomp` | preinstalled | preinstalled |
+| PySpark (`11_Data_Processing/02_PySpark`) | `brew install openjdk@17` | `sudo apt install openjdk-17-jdk` | [Temurin JDK 17](https://adoptium.net/temurin/releases/?version=17), then set `JAVA_HOME` |
+| Docker notebook and capstone containers | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | [Docker Engine](https://docs.docker.com/engine/install/) | [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| Local LLM (module 08, capstones 03–04) | `brew install llama.cpp` | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) |
+
+### 6. Optional: local LLM for module 08
+
+The LLM notebooks call an OpenAI-compatible API. The free default is `gpt-oss-20b` served by llama.cpp. The first start downloads about 12 GB:
 
 ```bash
 llama-server -hf ggml-org/gpt-oss-20b-GGUF --port 8080 --jinja
 ```
 
-The LLM notebooks read three environment variables, so you can point them at any OpenAI-compatible server:
+Leave it running in its own terminal. Stop it (Ctrl+C) while you work through the deep learning notebooks, to free memory.
 
-| Variable | Default | Example alternatives |
+To use a different server or a smaller model, set these variables **in the terminal you start Jupyter from**:
+
+| Variable | Default | Examples |
 |---|---|---|
-| `LLM_BASE_URL` | `http://127.0.0.1:8080/v1` | Ollama `http://localhost:11434/v1` · OpenAI `https://api.openai.com/v1` |
+| `LLM_BASE_URL` | `http://127.0.0.1:8080/v1` | Ollama `http://localhost:11434/v1` · LM Studio `http://localhost:1234/v1` · OpenAI `https://api.openai.com/v1` |
 | `LLM_MODEL` | `gpt-oss-20b` | any model your server provides |
-| `LLM_API_KEY` | `local` | your provider key |
+| `LLM_API_KEY` | `local` | your provider's key (never commit it) |
 
-### 5. Launch
+```bash
+export LLM_BASE_URL=http://localhost:11434/v1 LLM_MODEL=<model-name>    # macOS / Linux
+$env:LLM_BASE_URL="http://localhost:11434/v1"; $env:LLM_MODEL="<model-name>"   # Windows PowerShell
+```
+
+Smaller models work, but tool-calling and structured-output answers are less reliable than with the default.
+
+### 7. Launch Jupyter
+
+**macOS / Linux:**
 
 ```bash
 tools/start_notebook.sh      # classic Jupyter Notebook, with the course kernels registered
 ```
 
-The launcher points the default **Python 3** kernel at `.venv` and registers one kernel per extra environment (for example **AI Course (airflow)**). It also prints which notebooks need which kernel. On Windows, or if you prefer JupyterLab or VS Code, run `jupyter lab` from the activated `.venv` and pick the `.venv` interpreter as the kernel.
+The launcher makes the default **Python 3** kernel use `.venv`, even if you already have another Python kernel installed. It adds a kernel for each environment in `.venvs/`, and prints which notebooks need which kernel. Your global Jupyter settings are not changed.
 
-Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and start typing. Tip: create your own branch first (`git checkout -b my-learning`) so your answers never collide with course updates.
+**Windows (or if you prefer JupyterLab):** with `.venv` activated, run `jupyter notebook` or `jupyter lab`. If `check_setup.py` warned that the **python3** kernel points at a different Python, run this once: `python -m ipykernel install --user --name python3 --display-name "Python 3 (AI course)"`.
 
-> **Tip:** You learn by typing the code and solving the ✍️ exercises yourself — resist opening the solutions until you've tried.
+**VS Code:** open a notebook and pick `.venv` as the kernel.
+
+Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and follow [docs/STUDY_PLAN.md](docs/STUDY_PLAN.md).
+
+> **Tip:** You learn by typing the code and solving the ✍️ exercises yourself. Don't open the solutions until you've tried.
+
+### Keeping your fork up to date
+
+```bash
+git remote add upstream https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git   # once
+git checkout main && git pull upstream main && git push origin main                  # get course updates
+git checkout my-learning && git merge main                                            # bring them into your work
+uv pip install -r requirements.txt                                                    # in case packages changed
+```
+
+If a notebook you edited conflicts with an update, either keep your version, or take the new one with `git checkout main -- <path/to/notebook.ipynb>`.
+
+### Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| `ModuleNotFoundError` for a package that is installed | The notebook is running on a different Python. Run `python tools/check_setup.py`, start Jupyter with `tools/start_notebook.sh`, or choose the `.venv` kernel (Kernel → Change kernel). |
+| `libomp.dylib` / `XGBoostError` / LightGBM fails to load (macOS) | `brew install libomp`, then restart the kernel. |
+| PySpark: "Java not found" or "needs Java 17" | Install Java 17 or 21 (step 5), set `JAVA_HOME`, restart the kernel. |
+| The kernel dies or the machine slows to a crawl | Out of memory. Shut down other notebooks (**Running** tab → Shutdown), stop `llama-server`, and re-run. |
+| A cell prints `⏭️ Skipped …` | That cell needs a GPU, a paid API key, Docker, or Kubernetes. The message says exactly what to set up; the rest of the notebook still works. |
+| A dataset download fails | Re-run the cell (public servers hiccup). Downloads are cached in each module's `_outputs/` folder; delete that folder to force a fresh download. |
+| You broke a notebook and want the original back | `git checkout -- AI_Full_Stack_Engineer_Course/<module>/<notebook>.ipynb` |
+| Timed DSA checks don't stop a slow solution (Windows) | Expected: the timeout uses a Unix signal, so on Windows the time is only reported after the call finishes. |
 
 ---
 
@@ -373,6 +477,7 @@ Learning-AI-ML/
 ├── docs/                                  template spec, course map, study plan
 ├── tools/
 │   ├── nb.py                              build / run / check / link-check notebooks
+│   ├── check_setup.py                     verify your installation
 │   ├── start_notebook.sh                  launch Jupyter Notebook with the course kernels
 │   └── export_flashcards.py               interview Q&A → Anki CSV
 └── AI_Full_Stack_Engineer_Course/
