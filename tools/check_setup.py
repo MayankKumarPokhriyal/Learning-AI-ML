@@ -39,6 +39,8 @@ SMOKE_IMPORTS = {
     "spaCy + en_core_web_sm": "import spacy; spacy.load('en_core_web_sm')",
     "OpenCV": "import cv2",
     "Jupyter Notebook": "import notebook, nbclient, ipykernel",
+    "Agent frameworks (OpenAI Agents SDK, PydanticAI, smolagents)": "import agents, pydantic_ai, smolagents",
+    "Audio I/O (soundfile)": "import soundfile",
 }
 problems = 0
 
@@ -169,6 +171,23 @@ def main():
         say("⚠️", f"Java {major} found — PySpark needs Java 17 or 21", "Install Java 17 and point JAVA_HOME at it.")
     else:
         say("⏭️", "Java 17 not found — needed only for 11_Data_Processing/02_PySpark (see README → system tools)")
+    # In a child process: Playwright's driver can print asyncio noise when the interpreter exits
+    probe = ("from pathlib import Path\nfrom playwright.sync_api import sync_playwright\n"
+             "with sync_playwright() as pw:\n    print(Path(pw.chromium.executable_path).exists())")
+    try:
+        r = subprocess.run([sys.executable, "-c", probe], capture_output=True, text=True, timeout=120)
+        chromium_ok = r.returncode == 0 and r.stdout.strip().endswith("True")
+        playwright_missing = "ModuleNotFoundError" in r.stderr
+    except subprocess.TimeoutExpired:
+        chromium_ok, playwright_missing = False, False
+    if chromium_ok:
+        say("✅", "Playwright Chromium installed")
+    elif playwright_missing:
+        say("⏭️", "Playwright not installed — needed only for 16_Agentic_AI/03 (run: uv pip install -r requirements.txt)")
+    else:
+        say("⏭️", "Playwright Chromium not installed — needed only for 16_Agentic_AI/03 (run: python -m playwright install chromium)")
+    say("✅" if shutil.which("ffmpeg") else "⏭️", "FFmpeg found (audio decoding)" if shutil.which("ffmpeg") else
+        "FFmpeg not found — some audio decoding in 17_Multimodal_and_Generative_Models/03 may need it (brew/apt install ffmpeg)")
     docker = shutil.which("docker")
     running = docker and subprocess.run([docker, "info"], capture_output=True).returncode == 0
     say("✅" if running else "⏭️", "Docker is running" if running else
