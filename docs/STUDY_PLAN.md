@@ -15,7 +15,7 @@ tools/start_notebook.sh              # opens Jupyter Notebook with the right ker
 ```
 
 - Five notebooks need their own environment and kernel (the launcher lists them): LlamaIndex, Airflow, Monitoring & Drift, Kubeflow, AutoGluon. Install each with its `requirements-<env>.txt` in a separate virtual environment.
-- Module 08 and the LLM capstones need a local LLM server (see the README's *Local LLM* section).
+- Modules 08 and 16 and the LLM capstones need a local LLM server (see the README's *Local LLM* section). The browser-agent notebook (16/03) also needs Playwright's browser once: `python -m playwright install chromium`.
 - Broke a notebook? `git checkout -- <path>` restores the original.
 
 ## 2. How to study one notebook
@@ -44,9 +44,9 @@ Each notebook takes roughly **6–8 hours** in total (reading + running + exerci
 
 ---
 
-## 4. The plan (full-time pace: ~18 weeks)
+## 4. The plan (full-time pace: ~21 weeks)
 
-Part-time (2–3 h/day): keep the same order and give each "week" about 2½ weeks (~10 months total). *(optional)* notebooks can be skipped if time is short.
+Part-time (2–3 h/day): keep the same order and give each "week" about 2½ weeks (~12 months total). *(optional)* notebooks can be skipped if time is short.
 
 ### Week 1 — Python foundations
 - [ ] [01 Python Basics](../AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb)
@@ -137,37 +137,57 @@ Part-time (2–3 h/day): keep the same order and give each "week" about 2½ week
 - [ ] [Kubeflow Pipelines](../AI_Full_Stack_Engineer_Course/09_MLOps/06_Kubeflow_Pipelines.ipynb) *(optional)*
 - [ ] [FastAPI](../AI_Full_Stack_Engineer_Course/10_Model_Serving/01_FastAPI.ipynb)
 
-### Week 13 — Serving and data processing
+### Week 13 — Serving, then your first agent architectures
 - [ ] [Docker & CI/CD](../AI_Full_Stack_Engineer_Course/10_Model_Serving/02_Docker_and_CI_CD.ipynb)
 - [ ] [BentoML](../AI_Full_Stack_Engineer_Course/10_Model_Serving/03_BentoML.ipynb)
 - [ ] [Ray Serve](../AI_Full_Stack_Engineer_Course/10_Model_Serving/04_Ray_Serve.ipynb) *(optional)*
-- [ ] [Polars](../AI_Full_Stack_Engineer_Course/11_Data_Processing/01_Polars.ipynb)
-- [ ] [PySpark](../AI_Full_Stack_Engineer_Course/11_Data_Processing/02_PySpark.ipynb)
+- [ ] [Agent Architectures & Workflow Patterns](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/01_Agent_Architectures_and_Workflow_Patterns.ipynb)
+- [ ] [Context Engineering & Agent Memory](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/02_Context_Engineering_and_Agent_Memory.ipynb)
 - [ ] Weekend: Theory Questions §7–9 (ranking, causal inference, MLOps) · [ML System Design](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/03_ML_System_Design.ipynb)
 
-### Week 14 — Tuning and the first capstone
+### Week 14 — Agentic AI
+- [ ] [Code Agents, Browser Agents & Computer Use](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/03_Code_Agents_Browser_Agents_and_Computer_Use.ipynb)
+- [ ] [Multi-Agent Systems & A2A](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/04_Multi_Agent_Systems_and_A2A.ipynb)
+- [ ] [Agent Frameworks Compared](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/05_Agent_Frameworks_Compared.ipynb)
+- [ ] [Agent Evaluation & Benchmarks](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/06_Agent_Evaluation_and_Benchmarks.ipynb)
+- [ ] [Agent Security & Guardrails](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/07_Agent_Security_and_Guardrails.ipynb)
+
+### Week 15 — Production agents and multimodal AI
+- [ ] [Production Agents: Observability, Reliability & Cost](../AI_Full_Stack_Engineer_Course/16_Agentic_AI/08_Production_Agents_Observability_Reliability_Cost.ipynb)
+- [ ] [Generative Models: VAEs, GANs & Diffusion](../AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/01_Generative_Models_VAEs_GANs_Diffusion.ipynb)
+- [ ] [Vision-Language Models & Multimodal RAG](../AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/02_Vision_Language_Models_and_Multimodal_RAG.ipynb)
+- [ ] [Speech AI & Voice Agents](../AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/03_Speech_AI_and_Voice_Agents.ipynb)
+- [ ] Weekend: [Agentic AI System Design](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/08_Agentic_AI_System_Design.ipynb) §1–3 (framework, calculators, rapid-fire questions)
+
+### Week 16 — Data at scale and tuning
+- [ ] [Polars](../AI_Full_Stack_Engineer_Course/11_Data_Processing/01_Polars.ipynb)
+- [ ] [PySpark](../AI_Full_Stack_Engineer_Course/11_Data_Processing/02_PySpark.ipynb)
 - [ ] [Dask](../AI_Full_Stack_Engineer_Course/11_Data_Processing/03_Dask.ipynb) *(optional)*
 - [ ] [Optuna](../AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/01_Optuna.ipynb)
 - [ ] [Ray Tune](../AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/02_Ray_Tune.ipynb)
 - [ ] [AutoGluon](../AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/03_AutoGluon.ipynb) *(optional)*
-- [ ] [Capstone 1 — End-to-End ML Project](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb)
 
-### Week 15 — Capstones
+### Week 17 — Capstones (1)
+- [ ] [Capstone 1 — End-to-End ML Project](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb)
 - [ ] [Capstone 2 — End-to-End DL Project](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb)
+
+### Week 18 — Capstones (2)
 - [ ] [Capstone 3 — LLM RAG Assistant](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_RAG_Assistant_Project.ipynb)
 - [ ] [Capstone 4 — AI Agent](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/04_AI_Agent_Project.ipynb)
+- [ ] [Capstone 5 — Multi-Agent System (AI Data Analyst Team)](../AI_Full_Stack_Engineer_Course/13_Capstone_Projects/05_Multi_Agent_System_Project.ipynb)
 
-### Week 16 — Your own portfolio project
+### Week 19 — Your own portfolio project
 - [ ] Pick the template that matches your goal and adapt it to a dataset *you* care about: [ML](../AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb) · [DL](../AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb) · [LLM](../AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
 - [ ] Push it to its own GitHub repository with a README, tests and a short demo.
 
-### Week 17 — Interview drills
+### Week 20 — Interview drills
 - [ ] [ML Coding Drills](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/01_ML_Coding_Drills.ipynb) — all 3 timed mock rounds
 - [ ] [ML Theory & Statistics Questions](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/02_ML_Theory_and_Statistics_Questions.ipynb) — all 3 rapid-fire rounds
 - [ ] [DSA Coding Patterns — Part 1](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/06_DSA_Coding_Patterns_Part_1.ipynb) and [Part 2](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/07_DSA_Coding_Patterns_Part_2.ipynb) — timed sets
-- [ ] System design: one [ML](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/03_ML_System_Design.ipynb) and one [LLM](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/04_LLM_System_Design.ipynb) timed drill per day
+- [ ] System design: one [ML](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/03_ML_System_Design.ipynb), one [LLM](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/04_LLM_System_Design.ipynb) and one [agentic](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/08_Agentic_AI_System_Design.ipynb) timed drill per day
+- [ ] [Agentic AI System Design](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/08_Agentic_AI_System_Design.ipynb) — all case studies and the 3 timed drills
 
-### Week 18 — Behavioral and final mocks
+### Week 21 — Behavioral and final mocks
 - [ ] [Behavioral & Project Storytelling](../AI_Full_Stack_Engineer_Course/15_Interview_Prep/05_Behavioral_and_Project_Storytelling.ipynb) — write your story bank using your capstones and portfolio project
 - [ ] Two full mock interview loops (coding + ML theory + system design + behavioral)
 - [ ] Update your résumé bullets with the checker in the behavioral notebook
@@ -176,6 +196,7 @@ Part-time (2–3 h/day): keep the same order and give each "week" about 2½ week
 
 ## 5. If you're short on time
 
-- **ML engineer:** weeks 1–7, then MLOps (weeks 12–13), capstone 1, interview prep.
-- **AI / LLM engineer:** weeks 1–4, week 7 (deep learning), NLP embeddings + Hugging Face, weeks 10–11, FastAPI + Docker, capstones 3–4, interview prep.
+- **ML engineer:** weeks 1–7, then MLOps and serving (weeks 11–13), capstone 1, interview prep.
+- **AI / LLM engineer:** weeks 1–4, week 7 (deep learning), NLP embeddings + Hugging Face, weeks 10–11, FastAPI + Docker, weeks 13–15 (Agentic AI; multimodal optional), capstones 3–5, interview prep including Agentic AI System Design.
+- **AI agent engineer:** weeks 1–2, Logistic Regression and Decision Trees, week 7 (deep learning), Embeddings & Semantic Search, weeks 10–11, FastAPI + Docker, weeks 13–15 (all of Agentic AI, plus Speech AI & Voice Agents), capstones 4–5, then DSA, LLM and Agentic AI System Design, and behavioral.
 - **Skip first if needed:** every *(optional)* notebook, module 07 (reinforcement learning), Keras.

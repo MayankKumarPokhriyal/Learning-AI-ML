@@ -1,10 +1,10 @@
 # AI Full Stack Engineer Course
 
-> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 83 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
+> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 96 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayank%20Kumar%20Pokhriyal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
-![Notebooks](https://img.shields.io/badge/notebooks-83-success)
-![Modules](https://img.shields.io/badge/modules-16-informational)
+![Notebooks](https://img.shields.io/badge/notebooks-96-success)
+![Modules](https://img.shields.io/badge/modules-18-informational)
 ![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Interview--ready-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
@@ -57,8 +57,9 @@ flowchart TD
     P5[Phase 5 · Specializations<br/>NLP, computer vision, reinforcement learning]
     P6[Phase 6 · Generative AI<br/>LLM APIs, RAG, agents & MCP, evaluation, fine-tuning]
     P7[Phase 7 · Production<br/>MLOps, serving, Docker & CI, big data, AutoML]
-    P8[Phase 8 · Capstones & Interview Prep]
-    P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7 --> P8
+    P8[Phase 8 · Agentic AI & Multimodal<br/>agent architectures, memory, multi-agent & A2A, evaluation, security, diffusion, VLMs, voice]
+    P9[Phase 9 · Capstones & Interview Prep]
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7 --> P8 --> P9
 ```
 
 Notebooks marked *(optional)* are useful but rarely needed for interviews — skim or skip them if time is short.
@@ -219,7 +220,30 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 02 | [Ray Tune](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/02_Ray_Tune.ipynb) | Distributed tuning, ASHA, population-based training |
 | 03 | [AutoGluon](AI_Full_Stack_Engineer_Course/12_AutoML_Experimentation/03_AutoGluon.ipynb) *(optional)* | Strong tabular baselines in minutes |
 
-### Phase 8 — Capstones, Templates & Interview Prep
+### Phase 8 — Agentic AI & Multimodal · [`16_Agentic_AI/`](AI_Full_Stack_Engineer_Course/16_Agentic_AI/) · [`17_Multimodal_and_Generative_Models/`](AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/)
+
+**Agentic AI:** how to design, build, evaluate, secure and ship AI agents. Every pattern, framework and defense is measured on real tasks against a local LLM. (The study plan puts this module right after Model Serving.)
+
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Agent Architectures & Workflow Patterns](AI_Full_Stack_Engineer_Course/16_Agentic_AI/01_Agent_Architectures_and_Workflow_Patterns.ipynb) | Chaining, routing, parallelization, orchestrator–workers, evaluator–optimizer; ReAct vs plan-and-execute vs ReWOO vs Reflexion; loop control |
+| 02 | [Context Engineering & Agent Memory](AI_Full_Stack_Engineer_Course/16_Agentic_AI/02_Context_Engineering_and_Agent_Memory.ipynb) | Context budgets, compaction, tool-output handling, prompt caching, working/episodic/semantic memory, LangGraph stores |
+| 03 | [Code Agents, Browser Agents & Computer Use](AI_Full_Stack_Engineer_Course/16_Agentic_AI/03_Code_Agents_Browser_Agents_and_Computer_Use.ipynb) | Tool design for agents, code-as-action, sandboxing, Playwright web agents, coding-agent loops |
+| 04 | [Multi-Agent Systems & A2A](AI_Full_Stack_Engineer_Course/16_Agentic_AI/04_Multi_Agent_Systems_and_A2A.ipynb) | Supervisor, handoffs, debate, blackboard; why multi-agent systems fail; the A2A protocol vs MCP |
+| 05 | [Agent Frameworks Compared](AI_Full_Stack_Engineer_Course/16_Agentic_AI/05_Agent_Frameworks_Compared.ipynb) | One agent built in the raw SDK, OpenAI Agents SDK, PydanticAI, smolagents and LangGraph, measured; CrewAI, AutoGen and ADK explained |
+| 06 | [Agent Evaluation & Benchmarks](AI_Full_Stack_Engineer_Course/16_Agentic_AI/06_Agent_Evaluation_and_Benchmarks.ipynb) | Outcome vs trajectory metrics, pass^k, simulated users, trajectory judges, CI gates, SWE-bench/τ-bench/GAIA |
+| 07 | [Agent Security & Guardrails](AI_Full_Stack_Engineer_Course/16_Agentic_AI/07_Agent_Security_and_Guardrails.ipynb) | Prompt injection, the lethal trifecta, least privilege, human-in-the-loop, dual-LLM/CaMeL, NeMo Guardrails, red teaming |
+| 08 | [Production Agents](AI_Full_Stack_Engineer_Course/16_Agentic_AI/08_Production_Agents_Observability_Reliability_Cost.ipynb) | Tracing, SLOs, retries and idempotency, durable execution, streaming job APIs, cost control, safe rollouts |
+
+**Multimodal & Generative Models**
+
+| # | Notebook | You will learn |
+|---|---|---|
+| 01 | [Generative Models: VAEs, GANs & Diffusion](AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/01_Generative_Models_VAEs_GANs_Diffusion.ipynb) | Autoencoders to VAEs, GANs, a diffusion model from scratch, latent diffusion and guidance |
+| 02 | [Vision-Language Models & Multimodal RAG](AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/02_Vision_Language_Models_and_Multimodal_RAG.ipynb) | CLIP/SigLIP, small VLMs, document understanding, multimodal retrieval |
+| 03 | [Speech AI & Voice Agents](AI_Full_Stack_Engineer_Course/17_Multimodal_and_Generative_Models/03_Speech_AI_and_Voice_Agents.ipynb) | Whisper speech recognition, text-to-speech, latency budgets and turn-taking for voice agents |
+
+### Phase 9 — Capstones, Templates & Interview Prep
 
 **Capstone projects** · [`13_Capstone_Projects/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/) — each one is a notebook walkthrough **plus a real project folder** with code, tests, and a Dockerfile you can put on your résumé.
 
@@ -229,6 +253,7 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 02 | [End-to-End DL Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb) |
 | 03 | [LLM RAG Assistant](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_RAG_Assistant_Project.ipynb) |
 | 04 | [AI Agent](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/04_AI_Agent_Project.ipynb) |
+| 05 | [Multi-Agent System — AI Data Analyst Team](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/05_Multi_Agent_System_Project.ipynb) |
 
 **Templates** · [`14_Templates/`](AI_Full_Stack_Engineer_Course/14_Templates/) — fill-in starters: [ML](AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb) · [DL](AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb) · [LLM](AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
 
@@ -243,6 +268,7 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 05 | [Behavioral & Project Storytelling](AI_Full_Stack_Engineer_Course/15_Interview_Prep/05_Behavioral_and_Project_Storytelling.ipynb) | "Walk me through your project" and behavioral rounds |
 | 06 | [DSA Coding Patterns — Part 1](AI_Full_Stack_Engineer_Course/15_Interview_Prep/06_DSA_Coding_Patterns_Part_1.ipynb) | LeetCode-style rounds: arrays & hashing, two pointers, sliding window, stacks, binary search |
 | 07 | [DSA Coding Patterns — Part 2](AI_Full_Stack_Engineer_Course/15_Interview_Prep/07_DSA_Coding_Patterns_Part_2.ipynb) | Linked lists, trees, graphs, heaps, dynamic programming, backtracking |
+| 08 | [Agentic AI System Design](AI_Full_Stack_Engineer_Course/15_Interview_Prep/08_Agentic_AI_System_Design.ipynb) | "Design an agent that…" rounds: architecture, tools and permissions, memory, evaluation, security, cost |
 
 ---
 
@@ -254,8 +280,8 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 
 | Pace | Duration |
 |---|---|
-| Full-time (~6 h/day) | about 18 weeks |
-| Part-time (2–3 h/day) | about 10 months |
+| Full-time (~6 h/day) | about 21 weeks |
+| Part-time (2–3 h/day) | about 12 months |
 
 | Weeks (full-time) | Focus |
 |---|---|
@@ -263,9 +289,11 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 3–7 | Classical ML algorithm series (03), with DSA practice starting in week 3 |
 | 7–9 | Deep learning, NLP, computer vision, RL (04–07) |
 | 9–11 | Generative AI & LLMs (08) |
-| 11–14 | MLOps, serving, data processing, AutoML (09–12) |
-| 14–16 | Capstones and your own portfolio project (13–14) |
-| 17–18 | Interview prep (15) and mock interviews |
+| 11–13 | MLOps and model serving (09–10) |
+| 13–15 | Agentic AI (16), then multimodal and generative models (17) |
+| 16 | Data processing and AutoML (11–12) |
+| 17–19 | Capstones and your own portfolio project (13–14) |
+| 20–21 | Interview prep (15) and mock interviews |
 
 ### Flashcards for spaced repetition
 
@@ -279,7 +307,8 @@ This exports every 🎤 interview question in the course, with its answer, as a 
 ### Goal-based tracks
 
 - **ML Engineer:** 00 → 01 → 02/01 → 03 → 04/01–02 → 09/01, 03, 05 → 10/01–02 → 12/01 → Capstone 01 → 15/01–03
-- **LLM / GenAI Engineer:** 00 → 01/01–02, 04 → 03/01 → 04/01–03 → 05/02–03 → 08 (all) → 10/01–02 → Capstones 03–04 → 15/01, 04–05
+- **LLM / GenAI Engineer:** 00 → 01/01–02, 04 → 03/01 → 04/01–03 → 05/02–03 → 08 (all) → 10/01–02 → 16/01–02, 06–07 → 17/02 → Capstones 03–05 → 15/01, 04–05, 08
+- **AI Agent Engineer:** 00 → 01/01–02 → 03/01, 04 → 04/01–03 → 05/02 → 08/01–03, 05–06 → 10/01–02 → 16 (all) → 17/03 → Capstones 04–05 → 15/04, 06–08
 - **MLOps Engineer:** 00 → 01/02–03 → 03/02 → 09 (all) → 10 (all) → 11/01–02 → 12/01 → Capstone 01 → 15/03
 - **Computer Vision Engineer:** 00 → 01/01, 04 → 02/01 → 04/01–02 → 06 (all) → 09/01 → 10/01–02 → Capstone 02
 - **Data Scientist:** 00/01–02 → 01 (all) → 02/01 → 03 (all) → 12/01 → Capstone 01 → 15/01–03, 06
@@ -380,7 +409,9 @@ Keep the `.venvs/<name>` folder names. On macOS and Linux, the launcher in step 
 | XGBoost / LightGBM | `brew install libomp` | preinstalled | preinstalled |
 | PySpark (`11_Data_Processing/02_PySpark`) | `brew install openjdk@17` | `sudo apt install openjdk-17-jdk` | [Temurin JDK 17](https://adoptium.net/temurin/releases/?version=17), then set `JAVA_HOME` |
 | Docker notebook and capstone containers | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | [Docker Engine](https://docs.docker.com/engine/install/) | [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
-| Local LLM (module 08, capstones 03–04) | `brew install llama.cpp` | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) |
+| Local LLM (modules 08 and 16, capstones 03–05) | `brew install llama.cpp` | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) |
+| Browser agents (`16_Agentic_AI/03`) | `python -m playwright install chromium` | `python -m playwright install --with-deps chromium` | `python -m playwright install chromium` |
+| Audio decoding for the speech notebook (`17_Multimodal_and_Generative_Models/03`, via torchcodec) | `brew install ffmpeg` | `sudo apt install ffmpeg` | a shared FFmpeg build from [ffmpeg.org](https://ffmpeg.org/download.html) on your `PATH` |
 
 ### 6. Optional: local LLM for module 08
 
@@ -494,9 +525,11 @@ Learning-AI-ML/
     ├── 10_Model_Serving/                  FastAPI, Docker & CI/CD, BentoML, Ray Serve
     ├── 11_Data_Processing/                Polars, PySpark, Dask
     ├── 12_AutoML_Experimentation/         Optuna, Ray Tune, AutoGluon
-    ├── 13_Capstone_Projects/              4 end-to-end projects with real code
+    ├── 13_Capstone_Projects/              5 end-to-end projects with real code
     ├── 14_Templates/                      starter notebooks
-    └── 15_Interview_Prep/                 ML coding drills, DSA patterns, theory, system design, storytelling
+    ├── 15_Interview_Prep/                 ML coding drills, DSA patterns, theory, ML/LLM/agentic system design, storytelling
+    ├── 16_Agentic_AI/                     agent architectures, memory, code & browser agents, multi-agent & A2A, evaluation, security, production
+    └── 17_Multimodal_and_Generative_Models/  diffusion, vision-language models, speech and voice agents
 ```
 
 ---

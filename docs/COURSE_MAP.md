@@ -81,6 +81,7 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 | | 02_End_to_End_DL_Project + `image_classifier/` | capstone | core |
 | | 03_LLM_RAG_Assistant_Project + `rag_assistant/` | capstone | core + local LLM |
 | | 04_AI_Agent_Project + `ai_agent/` | capstone | core + local LLM |
+| | 05_Multi_Agent_System_Project + `data_analyst_agents/` | capstone | core + local LLM |
 | **14 Templates** | 01_ML_Template | template | core |
 | | 02_DL_Template | template | core |
 | | 03_LLM_Template | template | core + local LLM |
@@ -91,10 +92,22 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 | | 05_Behavioral_and_Project_Storytelling | prep | core |
 | | 06_DSA_Coding_Patterns_Part_1 | prep | core |
 | | 07_DSA_Coding_Patterns_Part_2 | prep | core |
+| | 08_Agentic_AI_System_Design | prep | core |
+| **16 Agentic AI** | 01_Agent_Architectures_and_Workflow_Patterns | topic | core + local LLM |
+| | 02_Context_Engineering_and_Agent_Memory | topic | core + local LLM |
+| | 03_Code_Agents_Browser_Agents_and_Computer_Use | topic | core + local LLM + Playwright Chromium |
+| | 04_Multi_Agent_Systems_and_A2A | topic | core + local LLM |
+| | 05_Agent_Frameworks_Compared | topic | core + local LLM |
+| | 06_Agent_Evaluation_and_Benchmarks | topic | core + local LLM |
+| | 07_Agent_Security_and_Guardrails | topic | core + local LLM |
+| | 08_Production_Agents_Observability_Reliability_Cost | topic | core + local LLM |
+| **17 Multimodal & Generative Models** | 01_Generative_Models_VAEs_GANs_Diffusion | topic | core |
+| | 02_Vision_Language_Models_and_Multimodal_RAG | topic | core |
+| | 03_Speech_AI_and_Voice_Agents | topic | core + local LLM |
 
 **Module 03 as an algorithm series:** notebooks 03–20 go one algorithm (or one practical skill) at a time, like a dedicated playlist. Each adds an **🃏 Algorithm Card** (learning type, objective, key hyperparameters, scaling needs, complexity, strengths/weaknesses, when to use it, best libraries), the math at interview depth, assumption experiments, validation curves, a fair head-to-head against neighbouring algorithms, and a NumPy implementation checked against scikit-learn.
 
-**Study plan:** [STUDY_PLAN.md](STUDY_PLAN.md) orders all 83 notebooks week by week. **Flashcards:** `python tools/export_flashcards.py` exports every interview question as an Anki CSV.
+**Study plan:** [STUDY_PLAN.md](STUDY_PLAN.md) orders all 96 notebooks week by week. Modules 16 and 17 are studied right after Model Serving, even though their folder numbers come last. **Flashcards:** `python tools/export_flashcards.py` exports every interview question as an Anki CSV.
 
 **Removed from v1** (low interview value or outdated): Bokeh, Altair, TensorFlow, standalone Keras 2, JAX, Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI), DeepSpeed (condensed into Distributed Training Overview). The original v1 notebooks are preserved under the git tag `v1-archive` (`git checkout v1-archive` to browse them).
 
