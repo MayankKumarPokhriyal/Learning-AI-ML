@@ -1,30 +1,89 @@
+<div align="center">
+
 # AI Full Stack Engineer Course
 
-> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 96 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
+**From `print("hello")` to shipping RAG apps, AI agents and production ML systems.**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayank%20Kumar%20Pokhriyal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
+96 Jupyter notebooks that **actually run**. Each one has hands-on exercises with instant feedback, from-scratch builds, a real-data project and interview Q&A.
+
+[![Notebook checks](https://github.com/MayankKumarPokhriyal/Learning-AI-ML/actions/workflows/notebooks.yml/badge.svg?branch=main)](https://github.com/MayankKumarPokhriyal/Learning-AI-ML/actions/workflows/notebooks.yml)
 ![Notebooks](https://img.shields.io/badge/notebooks-96-success)
 ![Modules](https://img.shields.io/badge/modules-18-informational)
-![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Interview--ready-orange)
+![Python](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
+![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Advanced-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayank%20Kumar%20Pokhriyal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
+
+[Start here](#start-here-pick-your-level) · [Quick start](#quick-start) · [Course map](#course-at-a-glance) · [Study plan](docs/STUDY_PLAN.md) · [How to study](#how-to-study-day-to-day) · [Branches](#branches-main-and-learning) · [Troubleshooting](#troubleshooting)
+
+</div>
+
+---
+
+## Contents
+
+- [Why this course](#why-this-course)
+- [Start here: pick your level](#start-here-pick-your-level)
+- [Quick start](#quick-start)
+- [How every notebook works](#how-every-notebook-works)
+- [The roadmap](#the-roadmap)
+- [Course at a glance](#course-at-a-glance)
+- [Study plans](#study-plans)
+- [Getting started (full setup)](#getting-started-full-setup)
+- [How to study day to day](#how-to-study-day-to-day)
+- [Branches: `main` and `learning`](#branches-main-and-learning)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [Repository structure](#repository-structure)
+- [Companion resources](#companion-resources)
+- [About the author](#about-the-author)
+- [License](#license)
 
 ---
 
 ## Why this course
 
 - **Beginner-first.** Module 00 starts with what a variable is. Every term is defined the first time it appears.
-- **Everything runs for real.** Every notebook is executed top to bottom with its outputs saved — no simulated results, no invented metrics. Conclusions are computed from the data.
-- **You write code, not just read it.** Every notebook has ✍️ *Your Turn* exercises and a graded 🟢/🟡/🔴 practice set. Run a cell and you instantly see ✅ correct, ⏳ not attempted, or ❌ with a hint. Solutions are hidden until you want them.
-- **Built for interviews.** Each notebook has a 🔧 *Build It From Scratch* section (softmax, k-NN, backprop, attention, gradient boosting… with only NumPy/PyTorch), 10–15 real interview questions with 30-second answers, deeper follow-ups and common wrong answers, and a quick quiz.
-- **Current tools (2026).** NumPy 2, pandas 3, scikit-learn 1.9, PyTorch 2.14, Transformers 5, LangChain/LangGraph, MCP, MLflow 3, Airflow 3, Spark 4.
-- **No API keys required.** LLM notebooks run against a free local model (e.g. `gpt-oss-20b` via llama.cpp) through the OpenAI-compatible API; the same code works with Ollama, LM Studio, OpenAI, or Anthropic by changing three environment variables.
-- **Verified resources.** Every video, paper, and doc link is checked automatically and its title matches its label.
+- **Everything runs for real.** Every notebook is executed top to bottom with its outputs saved. There are no simulated results or invented metrics, and conclusions are computed from the data. The whole course is re-run with every exercise solution before release.
+- **You write code, not just read it.** Every notebook has ✍️ *Your Turn* exercises and a graded 🟢/🟡/🔴 practice set. Run a cell and you instantly see ✅ correct, ⏳ not attempted, or ❌ with a hint. Solutions stay hidden until you want them.
+- **Built for interviews.** Each notebook has a 🔧 *Build It From Scratch* section (softmax, k-NN, backprop, attention, gradient boosting and more, with only NumPy or PyTorch). It also has 10–15 real interview questions with 30-second answers, deeper follow-ups and common wrong answers, plus a quick quiz. Module 15 covers coding rounds, ML/LLM/agentic system design and behavioral rounds.
+- **Current tools (2026).** NumPy 2, pandas 3, scikit-learn 1.9, PyTorch 2.14, Transformers 5, LangChain/LangGraph, OpenAI Agents SDK, PydanticAI, MCP, A2A, MLflow 3, Airflow 3, Spark 4.
+- **No API keys required.** LLM notebooks run against a free local model (`gpt-oss-20b` via llama.cpp) through the OpenAI-compatible API. The same code works with Ollama, LM Studio, OpenAI or Anthropic by changing three environment variables.
+- **Verified resources.** Every video, paper and doc link is checked automatically, and its title matches its label.
 
-## Who this is for
+**Who it's for:** beginners who want one ordered path into AI; students and software engineers moving into ML or AI engineering; and anyone preparing for **ML engineer, AI/LLM engineer, AI agent engineer, MLOps or data science interviews**.
 
-- Beginners who have never written code and want a single, ordered path into AI.
-- Students and software engineers moving into ML / AI engineering.
-- Anyone preparing for **ML engineer, AI/LLM engineer, MLOps, or data science interviews**.
+---
+
+## Start here: pick your level
+
+Every notebook labels its sections 🟢 beginner, 🟡 intermediate or 🔴 interview depth, so you can go as deep as you're ready for.
+
+| If you are… | Start with | Then | Focus on |
+|---|---|---|---|
+| 🟢 **New to programming** | [00 · Python Basics](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) | Follow [the study plan](docs/STUDY_PLAN.md) from week 1, in order. Skip *(optional)* notebooks. | 🟢 sections, ✍️ Your Turn exercises, the 📝 cheat sheet |
+| 🟡 **Comfortable with Python, new to ML** | [01 · NumPy](AI_Full_Stack_Engineer_Course/01_Core_Scientific_Computing/01_NumPy.ipynb) → [03 · ML Fundamentals](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | The classical ML series (03), then deep learning (04) and GenAI (08) | 🔧 Build It From Scratch, 🏋️ practice sets, 🚀 mini projects |
+| 🔴 **Working engineer moving into AI** | [08 · LLM APIs & Prompting](AI_Full_Stack_Engineer_Course/08_Generative_AI_LLM/01_LLM_APIs_and_Prompting.ipynb) | Agentic AI (16), production (09–10), multimodal (17), capstones 03–05 | 🔴 exercises, measured comparisons, 🎤 debugging and design questions |
+| 🎯 **Interviewing soon** | [15 · Interview Prep](AI_Full_Stack_Engineer_Course/15_Interview_Prep/) | ML coding drills, DSA patterns, ML/LLM/agentic system design, behavioral | Timed drills, [flashcards](#flashcards-for-spaced-repetition), every 🎤 Interview Q&A |
+
+Want a specific role? See the [goal-based tracks](#goal-based-tracks).
+
+---
+
+## Quick start
+
+For experienced users on macOS (Apple Silicon) or Linux. Full, step-by-step instructions for every OS are in [Getting started](#getting-started-full-setup).
+
+```bash
+git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git
+cd Learning-AI-ML
+git switch learning                      # do your work here; main stays clean
+uv venv --python 3.12 && source .venv/bin/activate
+uv pip install -r requirements.txt
+python tools/check_setup.py              # verify everything
+tools/start_notebook.sh                  # opens classic Jupyter Notebook
+```
 
 ---
 
@@ -35,14 +94,14 @@ Every notebook follows the same rhythm (full spec: [docs/NOTEBOOK_TEMPLATE.md](d
 | Section | What you do |
 |---|---|
 | 🤔 What Is It? · 🎯 Why It Matters | Plain-English intuition, and where it shows up in jobs and interviews |
-| ✅ By the End You Can · 📋 Contents · ⚙️ Setup | Learning goals, then one setup cell |
+| ✅ By the End You Can · 📋 Contents · ⚙️ Setup | Learning goals, then one setup cell (with the first-run cost: downloads, model calls, time) |
 | 1…N Concept sections | Intuition → runnable code → ✍️ **Your Turn** → 💡 **Interview angle** |
 | 🔧 Build It From Scratch | Implement the core idea yourself and check it against the library |
 | ⚠️ Common Pitfalls | Runnable ❌ wrong / ✅ right pairs |
 | 🏋️ Practice Exercises | 🟢 ×3 · 🟡 ×2 · 🔴 ×1 interview-style, with instant feedback |
-| 🚀 Mini Project | A real dataset, end to end — plus 🗣️ how to talk about it in an interview |
+| 🚀 Mini Project | A real dataset, end to end, plus 🗣️ how to talk about it in an interview |
 | 🎤 Interview Q&A · 🧪 Quick Quiz | Answer out loud first, then reveal |
-| 📚 Resources · 📝 Cheat Sheet · ➡️ What's Next | Verified docs, videos, papers; a one-table summary; the next notebook |
+| 📚 Resources · 📝 Cheat Sheet · ➡️ What's Next | Verified docs, videos and papers; a one-table summary; the next notebook |
 
 ---
 
@@ -62,7 +121,7 @@ flowchart TD
     P1 --> P2 --> P3 --> P4 --> P5 --> P6 --> P7 --> P8 --> P9
 ```
 
-Notebooks marked *(optional)* are useful but rarely needed for interviews — skim or skip them if time is short.
+Notebooks marked *(optional)* are useful but rarely needed for interviews, so skim or skip them if time is short.
 
 ---
 
@@ -92,13 +151,13 @@ Notebooks marked *(optional)* are useful but rarely needed for interviews — sk
 
 ### Phase 3 — Classical Machine Learning · [`03_Classical_Machine_Learning/`](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/)
 
-An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm per notebook. Each one has an 🃏 **Algorithm Card** (objective, key hyperparameters, scaling needs, complexity, strengths and weaknesses, when to use it, best libraries). Each also covers the math at interview depth, experiments that break its assumptions, validation curves, and a fair head-to-head against neighbouring algorithms. You implement the algorithm in NumPy and check it against scikit-learn.
+An **algorithm-by-algorithm series**, like a dedicated playlist, with one algorithm per notebook. Each one has an 🃏 **Algorithm Card** (objective, key hyperparameters, scaling needs, complexity, strengths and weaknesses, when to use it, best libraries). Each also covers the math at interview depth, experiments that break its assumptions, validation curves, and a fair head-to-head against neighbouring algorithms. You implement the algorithm in NumPy and check it against scikit-learn.
 
 **The big picture**
 
 | # | Notebook | You will learn |
 |---|---|---|
-| 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Supervised vs unsupervised, losses, L1/L2, bias–variance, CV, metrics, calibration — in NumPy |
+| 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Supervised vs unsupervised, losses, L1/L2, bias–variance, CV, metrics, calibration, in NumPy |
 | 02 | [Scikit-Learn](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/02_Scikit_Learn.ipynb) | Pipelines, CV strategies, tuning, imbalance, thresholds, persistence |
 
 **Supervised learning**
@@ -112,7 +171,7 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 07 | [Support Vector Machines](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/07_Support_Vector_Machines.ipynb) | Margins, hinge loss, the kernel trick, C and gamma, SVR |
 | 08 | [Decision Trees](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/08_Decision_Trees.ipynb) | Gini vs entropy, CART splits, pruning, feature importance pitfalls |
 | 09 | [Random Forest & Bagging](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/09_Random_Forest_and_Bagging.ipynb) | Bootstrap, variance reduction, OOB error, Extra Trees, permutation importance |
-| 10 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/10_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
+| 10 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/10_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost, and boosting math from scratch |
 | 11 | [Ensembles: Voting, Stacking & AdaBoost](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/11_Ensembles_Voting_Stacking_AdaBoost.ipynb) | Hard/soft voting, leakage-free stacking, AdaBoost's exponential loss |
 
 **Unsupervised learning**
@@ -193,7 +252,7 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 03 | [DVC](AI_Full_Stack_Engineer_Course/09_MLOps/03_DVC.ipynb) | Data versioning, reproducible pipelines, experiments |
 | 04 | [Airflow](AI_Full_Stack_Engineer_Course/09_MLOps/04_Airflow.ipynb) | Airflow 3 TaskFlow DAGs, scheduling, testing, a retraining DAG |
 | 05 | [Model Monitoring & Drift](AI_Full_Stack_Engineer_Course/09_MLOps/05_Model_Monitoring_and_Drift.ipynb) | Drift statistics, monitoring without labels, retraining triggers |
-| 06 | [Kubeflow Pipelines](AI_Full_Stack_Engineer_Course/09_MLOps/06_Kubeflow_Pipelines.ipynb) *(optional)* | KFP v2 components, artifacts, control flow, local runs |
+| 06 | [Kubeflow Pipelines](AI_Full_Stack_Engineer_Course/09_MLOps/06_Kubeflow_Pipelines.ipynb) *(optional)* | KFP v2 components, artifacts, control flow, local and Docker runs |
 
 **Model Serving** · [`10_Model_Serving/`](AI_Full_Stack_Engineer_Course/10_Model_Serving/)
 
@@ -245,17 +304,17 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 
 ### Phase 9 — Capstones, Templates & Interview Prep
 
-**Capstone projects** · [`13_Capstone_Projects/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/) — each one is a notebook walkthrough **plus a real project folder** with code, tests, and a Dockerfile you can put on your résumé.
+**Capstone projects** · [`13_Capstone_Projects/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/). Each one is a notebook walkthrough **plus a real project folder** with code, tests, a Dockerfile and a CI workflow you can put on your résumé.
 
-| # | Project |
-|---|---|
-| 01 | [End-to-End ML Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb) |
-| 02 | [End-to-End DL Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb) |
-| 03 | [LLM RAG Assistant](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_RAG_Assistant_Project.ipynb) |
-| 04 | [AI Agent](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/04_AI_Agent_Project.ipynb) |
-| 05 | [Multi-Agent System — AI Data Analyst Team](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/05_Multi_Agent_System_Project.ipynb) |
+| # | Project | Project folder |
+|---|---|---|
+| 01 | [End-to-End ML Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/01_End_to_End_ML_Project.ipynb) | [`churn_service/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/churn_service/) |
+| 02 | [End-to-End DL Project](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/02_End_to_End_DL_Project.ipynb) | [`image_classifier/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/image_classifier/) |
+| 03 | [LLM RAG Assistant](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/03_LLM_RAG_Assistant_Project.ipynb) | [`rag_assistant/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/rag_assistant/) |
+| 04 | [AI Agent](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/04_AI_Agent_Project.ipynb) | [`ai_agent/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/ai_agent/) |
+| 05 | [Multi-Agent System: AI Data Analyst Team](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/05_Multi_Agent_System_Project.ipynb) | [`data_analyst_agents/`](AI_Full_Stack_Engineer_Course/13_Capstone_Projects/data_analyst_agents/) |
 
-**Templates** · [`14_Templates/`](AI_Full_Stack_Engineer_Course/14_Templates/) — fill-in starters: [ML](AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb) · [DL](AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb) · [LLM](AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
+**Templates** · [`14_Templates/`](AI_Full_Stack_Engineer_Course/14_Templates/), fill-in starters for your own projects: [ML](AI_Full_Stack_Engineer_Course/14_Templates/01_ML_Template.ipynb) · [DL](AI_Full_Stack_Engineer_Course/14_Templates/02_DL_Template.ipynb) · [LLM](AI_Full_Stack_Engineer_Course/14_Templates/03_LLM_Template.ipynb)
 
 **Interview Prep** · [`15_Interview_Prep/`](AI_Full_Stack_Engineer_Course/15_Interview_Prep/)
 
@@ -276,7 +335,7 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 
 ### Full course, week by week
 
-**[docs/STUDY_PLAN.md](docs/STUDY_PLAN.md)** has a checkbox for every notebook in order. It also covers how to study a single notebook and a weekly rhythm with review days and mock interviews. Budget roughly 6–8 hours per notebook.
+**[docs/STUDY_PLAN.md](docs/STUDY_PLAN.md)** has a checkbox for every notebook in order. It also explains how to study a single notebook and sets out a weekly rhythm with review days and mock interviews. Budget roughly 6–8 hours per notebook.
 
 | Pace | Duration |
 |---|---|
@@ -295,15 +354,6 @@ An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm p
 | 17–19 | Capstones and your own portfolio project (13–14) |
 | 20–21 | Interview prep (15) and mock interviews |
 
-### Flashcards for spaced repetition
-
-```bash
-python tools/export_flashcards.py            # → flashcards/ai_course_interview_flashcards.csv
-python tools/export_flashcards.py --include-quiz
-```
-
-This exports every 🎤 interview question in the course, with its answer, as a CSV that Anki can import directly. Cards are tagged by module and notebook, so you can review only what you've finished.
-
 ### Goal-based tracks
 
 - **ML Engineer:** 00 → 01 → 02/01 → 03 → 04/01–02 → 09/01, 03, 05 → 10/01–02 → 12/01 → Capstone 01 → 15/01–03
@@ -314,9 +364,18 @@ This exports every 🎤 interview question in the course, with its answer, as a 
 - **Data Scientist:** 00/01–02 → 01 (all) → 02/01 → 03 (all) → 12/01 → Capstone 01 → 15/01–03, 06
 - **Interview sprint (4 weeks, if you already know the basics):** every 🔧 *Build It From Scratch* section in modules 01–04 and 08 → all Interview Q&A sections (as flashcards) → module 15
 
+### Flashcards for spaced repetition
+
+```bash
+python tools/export_flashcards.py            # → flashcards/ai_course_interview_flashcards.csv
+python tools/export_flashcards.py --include-quiz
+```
+
+This exports every 🎤 interview question in the course (1,600+ cards), with its answer, as a CSV that Anki can import directly. Cards are tagged by module and notebook, so you can review only what you've finished.
+
 ---
 
-## Getting started
+## Getting started (full setup)
 
 Setup takes about 15–30 minutes, most of it downloading packages. You need no API keys and no GPU.
 
@@ -324,8 +383,8 @@ Setup takes about 15–30 minutes, most of it downloading packages. You need no 
 
 | | |
 |---|---|
-| **Operating system** | **macOS 14 (Sonoma) or newer on Apple Silicon**, **Linux** (x86-64 or ARM64), or **Windows 10/11** (x86-64). Intel Macs are not supported, because current PyTorch, Ray and FAISS publish no Intel-Mac packages. Use a Linux machine or a cloud VM instead. |
-| **Memory** | 16 GB RAM recommended; 8 GB works for most notebooks if you run one at a time. The optional 20B local LLM for module 08 needs about 16 GB by itself (smaller models work too — see [Local LLM](#6-optional-local-llm-for-module-08)). |
+| **Operating system** | **macOS 14 (Sonoma) or newer on Apple Silicon**, **Linux** (x86-64 or ARM64), or **Windows 10/11** (x86-64). Intel Macs are not supported, because current PyTorch, Ray and FAISS publish no Intel-Mac packages; use a Linux machine or a cloud VM instead. |
+| **Memory** | 16 GB RAM recommended; 8 GB works for most notebooks if you run one at a time. The optional 20B local LLM for modules 08 and 16 needs about 16 GB by itself (smaller models work too; see [the local LLM step](#6-optional-local-llm-for-modules-08-and-16)). |
 | **Disk** | About 12 GB: 4 GB for the main environment, plus 8 GB of datasets and models downloaded as you progress. Doing everything takes about 30 GB, including the optional environments (3.5 GB) and the local LLM (12 GB). |
 | **Software** | [Git](https://git-scm.com/downloads) and [uv](https://docs.astral.sh/uv/getting-started/installation/). uv installs Python 3.12 for you. |
 
@@ -338,17 +397,17 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-### 1. Fork and clone
+### 1. Fork (or clone) and switch to the `learning` branch
 
-Click **Fork** at the top of this page (so you can save your own answers and progress), then:
+Click **Fork** at the top of this page so you can push your own progress, then:
 
 ```bash
 git clone https://github.com/<your-username>/Learning-AI-ML.git
 cd Learning-AI-ML
-git checkout -b my-learning     # keep your answers on your own branch
+git switch learning        # your workspace; main stays as the clean course
 ```
 
-Just want to read? `git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git` works too.
+Just want to read? `git clone https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git` works too. See [Branches](#branches-main-and-learning) for how the two branches work.
 
 ### 2. Create the main environment
 
@@ -372,9 +431,9 @@ python tools/check_setup.py
 The check:
 
 - confirms Python 3.12 and every pinned package;
-- test-imports the libraries that need native code (PyTorch, XGBoost, LightGBM, FAISS, spaCy, OpenCV);
+- test-imports the libraries that need native code (PyTorch, XGBoost, LightGBM, FAISS, spaCy, OpenCV, the agent frameworks);
 - checks that Jupyter will use this environment;
-- reports which optional pieces (Java, Docker, a local LLM, the extra environments) you still need, and for which notebooks.
+- reports which optional pieces (Java, Docker, Playwright's browser, FFmpeg, a local LLM, the extra environments) you still need, and for which notebooks.
 
 Fix anything marked ❌ before you start. Anything marked ⏭️ can wait until you reach the notebook that needs it.
 
@@ -408,20 +467,20 @@ Keep the `.venvs/<name>` folder names. On macOS and Linux, the launcher in step 
 |---|---|---|---|
 | XGBoost / LightGBM | `brew install libomp` | preinstalled | preinstalled |
 | PySpark (`11_Data_Processing/02_PySpark`) | `brew install openjdk@17` | `sudo apt install openjdk-17-jdk` | [Temurin JDK 17](https://adoptium.net/temurin/releases/?version=17), then set `JAVA_HOME` |
-| Docker notebook and capstone containers | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | [Docker Engine](https://docs.docker.com/engine/install/) | [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
-| Local LLM (modules 08 and 16, capstones 03–05) | `brew install llama.cpp` | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) |
+| Docker notebook, capstone containers, Kubeflow's Docker runner | [Docker Desktop](https://www.docker.com/products/docker-desktop/) | [Docker Engine](https://docs.docker.com/engine/install/) | [Docker Desktop](https://www.docker.com/products/docker-desktop/) |
+| Local LLM (modules 08 and 16, capstones 03–05, speech notebook) | `brew install llama.cpp` | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) | [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) |
 | Browser agents (`16_Agentic_AI/03`) | `python -m playwright install chromium` | `python -m playwright install --with-deps chromium` | `python -m playwright install chromium` |
 | Audio decoding for the speech notebook (`17_Multimodal_and_Generative_Models/03`, via torchcodec) | `brew install ffmpeg` | `sudo apt install ffmpeg` | a shared FFmpeg build from [ffmpeg.org](https://ffmpeg.org/download.html) on your `PATH` |
 
-### 6. Optional: local LLM for module 08
+### 6. Optional: local LLM for modules 08 and 16
 
 The LLM notebooks call an OpenAI-compatible API. The free default is `gpt-oss-20b` served by llama.cpp. The first start downloads about 12 GB:
 
 ```bash
-llama-server -hf ggml-org/gpt-oss-20b-GGUF --port 8080 --jinja
+llama-server -hf ggml-org/gpt-oss-20b-GGUF --port 8080 --jinja -c 32768 -np 2
 ```
 
-Leave it running in its own terminal. Stop it (Ctrl+C) while you work through the deep learning notebooks, to free memory.
+`--jinja` enables tool calling, and `-c 32768 -np 2` gives two parallel requests with 16k tokens of context each, which is what the agent notebooks expect. Leave it running in its own terminal. Stop it (Ctrl+C) while you work through the deep learning and multimodal notebooks, to free memory.
 
 To use a different server or a smaller model, set these variables **in the terminal you start Jupyter from**:
 
@@ -436,7 +495,7 @@ export LLM_BASE_URL=http://localhost:11434/v1 LLM_MODEL=<model-name>    # macOS 
 $env:LLM_BASE_URL="http://localhost:11434/v1"; $env:LLM_MODEL="<model-name>"   # Windows PowerShell
 ```
 
-Smaller models work, but tool-calling and structured-output answers are less reliable than with the default.
+Smaller models work, but tool calling and structured output are less reliable than with the default.
 
 ### 7. Launch Jupyter
 
@@ -446,55 +505,91 @@ Smaller models work, but tool-calling and structured-output answers are less rel
 tools/start_notebook.sh      # classic Jupyter Notebook, with the course kernels registered
 ```
 
-The launcher makes the default **Python 3** kernel use `.venv`, even if you already have another Python kernel installed. It adds a kernel for each environment in `.venvs/`, and prints which notebooks need which kernel. Your global Jupyter settings are not changed.
+The launcher makes the default **Python 3** kernel use `.venv`, even if you already have another Python kernel installed. It also adds a kernel for each environment in `.venvs/` and prints which notebooks need which kernel. Your global Jupyter settings are not changed.
 
 **Windows (or if you prefer JupyterLab):** with `.venv` activated, run `jupyter notebook` or `jupyter lab`. If `check_setup.py` warned that the **python3** kernel points at a different Python, run this once: `python -m ipykernel install --user --name python3 --display-name "Python 3 (AI course)"`.
 
-**VS Code:** open a notebook and pick `.venv` as the kernel.
+Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) (or your [starting point](#start-here-pick-your-level)) and follow [docs/STUDY_PLAN.md](docs/STUDY_PLAN.md).
 
-Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and follow [docs/STUDY_PLAN.md](docs/STUDY_PLAN.md).
+---
 
-> **Tip:** You learn by typing the code and solving the ✍️ exercises yourself. Don't open the solutions until you've tried.
+## How to study day to day
 
-### Keeping your fork up to date
+### Recommended setup: classic Jupyter Notebook on your own machine
+
+| Tool | Use it for | Why |
+|---|---|---|
+| **Jupyter Notebook, locally** (recommended) | Learning: every notebook, cell by cell | The course is built and verified this way. Everything works locally: the local LLM, Docker, Playwright and the separate environments. |
+| **VS Code** | The capstone project folders (`13_Capstone_Projects/*/`): code, tests, Dockerfiles, git | A real editor, debugger and terminal for project code. Notebooks also open fine here: pick `.venv` as the kernel. |
+| **Google Colab** | Optional: only the few cells that need an NVIDIA GPU (QLoRA, vLLM) | Colab has no local LLM server, no Docker, no separate environments, and sessions reset, so most notebooks won't run as designed there. |
+
+### A daily routine
+
+1. **Start Jupyter.** `cd Learning-AI-ML && source .venv/bin/activate && tools/start_notebook.sh`
+2. **Start extras only when a notebook needs them.**
+   - **Local LLM:** modules 08 and 16, capstones 03–05 and the speech notebook ([step 6](#6-optional-local-llm-for-modules-08-and-16)). Stop it during deep learning and multimodal notebooks.
+   - **Docker Desktop:** the Docker notebook and capstone containers.
+3. **Open today's notebook** from the [study plan](docs/STUDY_PLAN.md) and choose **Kernel → Restart & Clear Output**.
+4. **Run one cell at a time** with **Shift + Enter**. Before each run, predict the output; after it, change one thing and re-run.
+5. **Solve every ✍️ Your Turn cell** until the checker shows ✅. Open a solution only after a real attempt.
+6. **Say each 💡 Interview angle and 🎤 Q&A answer out loud** before revealing the answer. Keep a *mistakes log*.
+7. **Keep one notebook open at a time** and shut finished ones down from the **Running** tab. Memory matters for the LLM and deep learning notebooks.
+8. **Commit your progress** on the `learning` branch (see below) and review 20 flashcards.
+
+Each notebook's ⚙️ Setup section tells you its **first-run cost**: downloads, LLM calls and time. Agent notebooks replay model replies from a cache in `_outputs/` on later runs, so re-runs are much faster.
+
+---
+
+## Branches: `main` and `learning`
+
+| Branch | What it is | Who changes it |
+|---|---|---|
+| **`main`** | The complete, verified course: every notebook with real saved outputs, the tools and the docs. | Only course updates (pull requests). Never do exercises here. |
+| **`learning`** | Your workspace: the same course, where you run notebooks, type answers and keep notes. | You. Mistakes here never touch `main`. |
 
 ```bash
-git remote add upstream https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git   # once
-git checkout main && git pull upstream main && git push origin main                  # get course updates
-git checkout my-learning && git merge main                                            # bring them into your work
-uv pip install -r requirements.txt                                                    # in case packages changed
+git switch learning                                   # work here
+git add -A && git commit -m "Week 4: logistic regression exercises"
+git push                                              # back up your progress (to your fork)
+
+git switch main && git pull                           # get course updates…
+git switch learning && git merge main                 # …and bring them into your workspace
+
+git restore --source main -- AI_Full_Stack_Engineer_Course/<module>/<notebook>.ipynb   # reset one notebook to the course version
 ```
 
-If a notebook you edited conflicts with an update, either keep your version, or take the new one with `git checkout main -- <path/to/notebook.ipynb>`.
+If a merge from `main` conflicts in a notebook you've been editing, keep your version, or take the course version with the `git restore` command above. **Using a fork?** Add the original course as `upstream` once (`git remote add upstream https://github.com/MayankKumarPokhriyal/Learning-AI-ML.git`). Then refresh your `main` with `git switch main && git pull upstream main && git push origin main` and merge it into `learning` as above.
 
-### Troubleshooting
+---
+
+## Troubleshooting
 
 | Symptom | Fix |
 |---|---|
-| `ModuleNotFoundError` for a package that is installed | The notebook is running on a different Python. Run `python tools/check_setup.py`, start Jupyter with `tools/start_notebook.sh`, or choose the `.venv` kernel (Kernel → Change kernel). |
+| `ModuleNotFoundError` for a package that is installed | The notebook is running on a different Python. Run `python tools/check_setup.py`, start Jupyter with `tools/start_notebook.sh`, or choose the `.venv` kernel (**Kernel → Change kernel**). |
 | `libomp.dylib` / `XGBoostError` / LightGBM fails to load (macOS) | `brew install libomp`, then restart the kernel. |
-| PySpark: "Java not found" or "needs Java 17" | Install Java 17 or 21 (step 5), set `JAVA_HOME`, restart the kernel. |
-| The kernel dies or the machine slows to a crawl | Out of memory. Shut down other notebooks (**Running** tab → Shutdown), stop `llama-server`, and re-run. |
-| A cell prints `⏭️ Skipped …` | That cell needs a GPU, a paid API key, Docker, or Kubernetes. The message says exactly what to set up; the rest of the notebook still works. |
+| PySpark: "Java not found" or "needs Java 17" | Install Java 17 or 21 ([step 5](#5-optional-system-tools-for-a-few-notebooks)), set `JAVA_HOME`, restart the kernel. |
+| Docker Desktop is open but `docker info` returns an error (for example *500 Internal Server Error*) | The engine is stuck. Run `docker desktop restart` (or quit and reopen Docker Desktop), wait until `docker info` works, then re-run the cell. |
+| An LLM cell hangs or says the server is unreachable | Check `curl http://127.0.0.1:8080/health` returns `{"status":"ok"}`. Start the server ([step 6](#6-optional-local-llm-for-modules-08-and-16)), and remember the first run of an agent notebook makes real model calls, so it is slow. |
+| The kernel dies or the machine slows to a crawl | Out of memory. Shut down other notebooks (**Running** tab → Shutdown), stop `llama-server` if the notebook doesn't need it, and re-run. |
+| A cell prints `⏭️ Skipped …` | That cell needs something optional: an NVIDIA GPU, a paid API key, Docker, or Kubernetes. The message says exactly what to set up; the rest of the notebook still works. |
 | A dataset download fails | Re-run the cell (public servers hiccup). Downloads are cached in each module's `_outputs/` folder; delete that folder to force a fresh download. |
-| You broke a notebook and want the original back | `git checkout -- AI_Full_Stack_Engineer_Course/<module>/<notebook>.ipynb` |
+| You broke a notebook and want the original back | `git restore --source main -- AI_Full_Stack_Engineer_Course/<module>/<notebook>.ipynb` |
 | Timed DSA checks don't stop a slow solution (Windows) | Expected: the timeout uses a Unix signal, so on Windows the time is only reported after the call finishes. |
 
 ---
 
-## For contributors
+## Contributing
 
-Notebooks are authored as [jupytext](https://jupytext.readthedocs.io/) scripts and checked with [`tools/nb.py`](tools/nb.py):
+Found a bug, a dead link, an outdated API, or have an idea for a notebook? Contributions are welcome.
 
-```bash
-python tools/nb.py build my_notebook.py AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb
-python tools/nb.py run   AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb              # execute, save outputs
-python tools/nb.py run   AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb --solutions  # every solution must pass
-python tools/nb.py check AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb              # template structure
-python tools/nb.py links AI_Full_Stack_Engineer_Course/<module>/<Notebook>.ipynb --titles     # links and titles
-```
+- **Report an issue:** use the [issue forms](../../issues/new/choose) (notebook bug or content request).
+- **Send a fix:** read [CONTRIBUTING.md](CONTRIBUTING.md) for the notebook checklist, then open a pull request against `main`.
+- **Be kind:** see the [Code of Conduct](CODE_OF_CONDUCT.md). Security concerns go through [SECURITY.md](SECURITY.md).
 
-A GitHub Actions workflow runs the structure check on every pull request and the link check weekly. See [docs/NOTEBOOK_TEMPLATE.md](docs/NOTEBOOK_TEMPLATE.md) and [docs/COURSE_MAP.md](docs/COURSE_MAP.md).
+Notebooks are checked with [`tools/nb.py`](tools/nb.py) (structure, execution, exercise solutions, links), and a GitHub Actions workflow runs the structure check on every pull request. The authoring spec is [docs/NOTEBOOK_TEMPLATE.md](docs/NOTEBOOK_TEMPLATE.md), and [docs/COURSE_MAP.md](docs/COURSE_MAP.md) lists every notebook with its kind and environment.
+
+If a notebook helped you learn something or land a job, a [star on the repo](../../stargazers) means a lot.
 
 ---
 
@@ -503,14 +598,16 @@ A GitHub Actions workflow runs the structure check on every pull request and the
 ```
 Learning-AI-ML/
 ├── README.md
-├── LICENSE
-├── requirements*.txt
-├── docs/                                  template spec, course map, study plan
+├── CONTRIBUTING.md · CODE_OF_CONDUCT.md · SECURITY.md · LICENSE
+├── requirements.txt                       main environment (pinned)
+├── requirements-<env>.txt                 five small extra environments
+├── .github/                               CI workflow, issue forms, PR template
+├── docs/                                  study plan, course map, notebook template spec
 ├── tools/
-│   ├── nb.py                              build / run / check / link-check notebooks
 │   ├── check_setup.py                     verify your installation
 │   ├── start_notebook.sh                  launch Jupyter Notebook with the course kernels
-│   └── export_flashcards.py               interview Q&A → Anki CSV
+│   ├── export_flashcards.py               interview Q&A → Anki CSV
+│   └── nb.py                              build / run / check / link-check notebooks
 └── AI_Full_Stack_Engineer_Course/
     ├── 00_Foundations/                    Python, internals, packaging
     ├── 01_Core_Scientific_Computing/      NumPy, Pandas, SQL, math, statistics
@@ -536,30 +633,24 @@ Learning-AI-ML/
 
 ## Companion resources
 
-- [3Blue1Brown — Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) — the best visual explanation of how neural networks learn
-- [Andrej Karpathy — Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ) — build GPT from scratch
-- [fast.ai — Practical Deep Learning](https://course.fast.ai/) — top-down deep learning
-- [Hugging Face Learn](https://huggingface.co/learn) — LLMs, agents, and more
-- [Made With ML](https://madewithml.com/) — MLOps best practices
+- [3Blue1Brown — Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi): the best visual explanation of how neural networks learn
+- [Andrej Karpathy — Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ): build GPT from scratch
+- [fast.ai — Practical Deep Learning](https://course.fast.ai/): top-down deep learning
+- [Hugging Face Learn](https://huggingface.co/learn): LLMs, agents, and more
+- [Made With ML](https://madewithml.com/): MLOps best practices
 
 ---
 
 ## About the author
 
-Hi, I'm **Mayank Kumar Pokhriyal** — an AI/ML engineer with several years of industry experience building and shipping machine learning systems. I created this course because, when I was learning, I had to stitch together dozens of disconnected tutorials, courses, and docs to figure out what actually mattered in the real world. This is the single, opinionated roadmap I wish I had when I started — beginner-friendly at the entry, production-grade at the exit.
+Hi, I'm **Mayank Kumar Pokhriyal**, an AI/ML engineer with several years of industry experience building and shipping machine learning systems. I created this course because, when I was learning, I had to stitch together dozens of disconnected tutorials, courses and docs to figure out what actually mattered in the real world. This is the single, opinionated roadmap I wish I'd had when I started: beginner-friendly at the entry, production-grade at the exit.
 
-If this course helps you, I would love to hear about it. Connect with me, ask questions, or share what you built:
+If this course helps you, I'd love to hear about it. Connect with me, ask questions, or share what you built:
 
 [**LinkedIn — linkedin.com/in/mayank-kumar-pokhriyal**](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
 
 ---
 
-## Contributing & feedback
-
-Found a bug, a dead link, or have an idea for a notebook? Open an [issue](../../issues) or a pull request — the checks in [`tools/nb.py`](tools/nb.py) tell you whether a notebook meets the template.
-
-If a notebook helped you learn something or land a job, a [star on the repo](../../stargazers) means a lot.
-
 ## License
 
-Released under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE). Datasets and pretrained models used by the notebooks keep their own licences, which each notebook states where it downloads them.

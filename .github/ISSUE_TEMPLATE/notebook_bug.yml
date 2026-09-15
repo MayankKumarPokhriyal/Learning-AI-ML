@@ -1,0 +1,74 @@
+name: 🐛 Notebook bug
+description: A notebook errors, gives wrong output, or a checker marks a correct answer as wrong.
+title: "[Bug] <module>/<notebook>: <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! Please run `python tools/check_setup.py` first — many problems are a missing optional tool or the wrong kernel.
+  - type: input
+    id: notebook
+    attributes:
+      label: Notebook
+      description: Path under AI_Full_Stack_Engineer_Course/
+      placeholder: 03_Classical_Machine_Learning/04_Logistic_Regression.ipynb
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: Section or cell
+      placeholder: "§5 Regularization, the cell after “✍️ Your Turn”"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected, and what you saw instead.
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error output
+      description: Paste the full traceback or output (remove any API keys or personal paths).
+      render: text
+  - type: textarea
+    id: setup
+    attributes:
+      label: Output of `python tools/check_setup.py`
+      render: text
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS (Apple Silicon)
+        - Linux (x86-64)
+        - Linux (ARM64)
+        - Windows
+        - Windows (WSL2)
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: runner
+    attributes:
+      label: How you ran it
+      options:
+        - Jupyter Notebook (tools/start_notebook.sh)
+        - JupyterLab
+        - VS Code
+        - Google Colab
+        - Other
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I restarted the kernel and ran the notebook from the top.
+          required: true
+        - label: I checked the README's Troubleshooting table.
+          required: true

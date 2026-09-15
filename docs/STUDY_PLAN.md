@@ -10,7 +10,7 @@ A week-by-week path through the whole course, designed for someone starting as a
 cd Learning-AI-ML
 uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -r requirements.txt
-git checkout -b my-learning          # your exercises and notes live here; the course stays clean
+git switch learning                  # your exercises and notes live here; main stays the clean course
 tools/start_notebook.sh              # opens Jupyter Notebook with the right kernels
 ```
 

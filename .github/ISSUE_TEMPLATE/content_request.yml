@@ -1,0 +1,39 @@
+name: 💡 Content request
+description: Suggest a clearer explanation, a missing topic, a new exercise or notebook, or report a broken or outdated link.
+title: "[Content] <short description>"
+labels: ["content"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of request?
+      options:
+        - An explanation is unclear
+        - A topic is missing
+        - New exercise or interview question
+        - New notebook or module
+        - Broken or outdated link / API
+        - Study plan or README
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Where (notebook or doc)
+      placeholder: 16_Agentic_AI/06_Agent_Evaluation_and_Benchmarks.ipynb §5
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What should change, and why would it help learners? Links to primary sources (docs, papers) are very welcome.
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Which learners does this help most?
+      options:
+        - 🟢 Beginners
+        - 🟡 Intermediate
+        - 🔴 Advanced / interview prep
+        - Everyone

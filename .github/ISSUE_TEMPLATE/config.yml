@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📘 Setup and study guide
+    url: https://github.com/MayankKumarPokhriyal/Learning-AI-ML#getting-started-full-setup
+    about: Installation steps, the daily study routine, branches and troubleshooting.
+  - name: 🗓️ Study plan
+    url: https://github.com/MayankKumarPokhriyal/Learning-AI-ML/blob/main/docs/STUDY_PLAN.md
+    about: The week-by-week checklist for all 96 notebooks.
