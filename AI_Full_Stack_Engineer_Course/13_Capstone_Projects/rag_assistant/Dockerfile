@@ -8,6 +8,9 @@ FROM python:3.12-slim AS builder
 COPY --from=ghcr.io/astral-sh/uv:0.10.3 /uv /bin/uv
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_PYTHON_DOWNLOADS=never
 WORKDIR /build
+# A C compiler for dependencies without a prebuilt wheel on this platform (e.g. PyStemmer on linux/aarch64,
+# which is what Docker Desktop runs on Apple Silicon). Builder stage only: the runtime image stays slim.
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev && rm -rf /var/lib/apt/lists/*
 # Dependencies first: this layer is reused until requirements.lock changes. CPU-only PyTorch keeps CUDA wheels out of the image.
 COPY requirements.lock ./
 RUN --mount=type=cache,target=/root/.cache/uv \
