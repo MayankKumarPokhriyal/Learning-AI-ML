@@ -22,7 +22,24 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 | | 02_Plotly *(optional)* | topic | core |
 | **03 Classical ML** | 01_ML_Fundamentals_From_Scratch | topic | core |
 | | 02_Scikit_Learn | topic | core |
+| *supervised* | 03_Linear_Regression | topic | core |
+| | 04_Logistic_Regression | topic | core |
+| | 05_K_Nearest_Neighbors | topic | core |
+| | 06_Naive_Bayes | topic | core |
+| | 07_Support_Vector_Machines | topic | core |
+| | 08_Decision_Trees | topic | core |
+| | 09_Random_Forest_and_Bagging | topic | core |
 | | 10_Gradient_Boosting | topic | core |
+| | 11_Ensembles_Voting_Stacking_AdaBoost | topic | core |
+| *unsupervised* | 12_Clustering_KMeans_and_Hierarchical | topic | core |
+| | 13_Clustering_DBSCAN_and_Gaussian_Mixtures | topic | core |
+| | 14_Dimensionality_Reduction_PCA_tSNE_UMAP | topic | core |
+| | 15_Anomaly_Detection | topic | core |
+| *practical ML* | 16_Feature_Engineering_and_Selection | topic | core |
+| | 17_Imbalanced_Data_and_Model_Evaluation | topic | core |
+| | 18_Model_Interpretability_SHAP_LIME | topic | core |
+| | 19_Recommender_Systems | topic | core |
+| | 20_Time_Series_Forecasting | topic | core |
 | **04 Deep Learning** | 01_Neural_Networks_From_Scratch | topic | core |
 | | 02_PyTorch | topic | core |
 | | 03_Transformers_From_Scratch | topic | core |
@@ -72,6 +89,12 @@ Beginner-first order. Every notebook follows [NOTEBOOK_TEMPLATE.md](NOTEBOOK_TEM
 | | 03_ML_System_Design | prep | core |
 | | 04_LLM_System_Design | prep | core + local LLM |
 | | 05_Behavioral_and_Project_Storytelling | prep | core |
+| | 06_DSA_Coding_Patterns_Part_1 | prep | core |
+| | 07_DSA_Coding_Patterns_Part_2 | prep | core |
+
+**Module 03 as an algorithm series:** notebooks 03–20 go one algorithm (or one practical skill) at a time, like a dedicated playlist. Each adds an **🃏 Algorithm Card** (learning type, objective, key hyperparameters, scaling needs, complexity, strengths/weaknesses, when to use it, best libraries), the math at interview depth, assumption experiments, validation curves, a fair head-to-head against neighbouring algorithms, and a NumPy implementation checked against scikit-learn.
+
+**Study plan:** [STUDY_PLAN.md](STUDY_PLAN.md) orders all 83 notebooks week by week. **Flashcards:** `python tools/export_flashcards.py` exports every interview question as an Anki CSV.
 
 **Removed from v1** (low interview value or outdated): Bokeh, Altair, TensorFlow, standalone Keras 2, JAX, Detectron2, RLlib, H2O, standalone Flask (now a section of FastAPI), DeepSpeed (condensed into Distributed Training Overview). The v1 notebooks remain available on the `main` branch.
 

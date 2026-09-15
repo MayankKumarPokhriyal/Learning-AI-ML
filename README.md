@@ -1,9 +1,9 @@
 # AI Full Stack Engineer Course
 
-> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 64 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
+> A beginner-first, interview-ready roadmap from `print("hello")` to shipping RAG apps, AI agents, and production ML systems — 83 Jupyter notebooks that **actually run**, each with exercises, from-scratch builds, a real-data project, and interview Q&A.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Mayank%20Kumar%20Pokhriyal-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayank-kumar-pokhriyal/)
-![Notebooks](https://img.shields.io/badge/notebooks-64-success)
+![Notebooks](https://img.shields.io/badge/notebooks-83-success)
 ![Modules](https://img.shields.io/badge/modules-16-informational)
 ![Level](https://img.shields.io/badge/level-Beginner%20%E2%86%92%20Interview--ready-orange)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -52,7 +52,7 @@ Every notebook follows the same rhythm (full spec: [docs/NOTEBOOK_TEMPLATE.md](d
 flowchart TD
     P1[Phase 1 · Foundations<br/>Python, internals, packaging]
     P2[Phase 2 · Data & Math<br/>NumPy, Pandas, SQL, math, statistics, visualization]
-    P3[Phase 3 · Classical ML<br/>from scratch, scikit-learn, gradient boosting]
+    P3[Phase 3 · Classical ML<br/>one algorithm at a time: supervised, unsupervised, practical ML]
     P4[Phase 4 · Deep Learning<br/>neural nets & transformers from scratch, PyTorch]
     P5[Phase 5 · Specializations<br/>NLP, computer vision, reinforcement learning]
     P6[Phase 6 · Generative AI<br/>LLM APIs, RAG, agents & MCP, evaluation, fine-tuning]
@@ -91,11 +91,47 @@ Notebooks marked *(optional)* are useful but rarely needed for interviews — sk
 
 ### Phase 3 — Classical Machine Learning · [`03_Classical_Machine_Learning/`](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/)
 
+An **algorithm-by-algorithm series**, like a dedicated playlist: one algorithm per notebook. Each one has an 🃏 **Algorithm Card** (objective, key hyperparameters, scaling needs, complexity, strengths and weaknesses, when to use it, best libraries). Each also covers the math at interview depth, experiments that break its assumptions, validation curves, and a fair head-to-head against neighbouring algorithms. You implement the algorithm in NumPy and check it against scikit-learn.
+
+**The big picture**
+
 | # | Notebook | You will learn |
 |---|---|---|
-| 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Logistic regression, L1/L2, bias–variance, CV, metrics, calibration, trees — in NumPy |
+| 01 | [ML Fundamentals From Scratch](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/01_ML_Fundamentals_From_Scratch.ipynb) | Supervised vs unsupervised, losses, L1/L2, bias–variance, CV, metrics, calibration — in NumPy |
 | 02 | [Scikit-Learn](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/02_Scikit_Learn.ipynb) | Pipelines, CV strategies, tuning, imbalance, thresholds, persistence |
-| 03 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/10_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
+
+**Supervised learning**
+
+| # | Notebook | You will learn |
+|---|---|---|
+| 03 | [Linear Regression](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/03_Linear_Regression.ipynb) | OLS, gradient descent, Ridge/Lasso/ElasticNet, assumptions and diagnostics, statsmodels inference |
+| 04 | [Logistic Regression](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/04_Logistic_Regression.ipynb) | Log-loss, odds ratios, regularization, multiclass, thresholds and calibration |
+| 05 | [K-Nearest Neighbors](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/05_K_Nearest_Neighbors.ipynb) | Distance metrics, choosing k, scaling, KD/ball trees, the curse of dimensionality |
+| 06 | [Naive Bayes](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/06_Naive_Bayes.ipynb) | Bayes' rule, Gaussian/Multinomial/Bernoulli NB, smoothing, text classification |
+| 07 | [Support Vector Machines](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/07_Support_Vector_Machines.ipynb) | Margins, hinge loss, the kernel trick, C and gamma, SVR |
+| 08 | [Decision Trees](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/08_Decision_Trees.ipynb) | Gini vs entropy, CART splits, pruning, feature importance pitfalls |
+| 09 | [Random Forest & Bagging](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/09_Random_Forest_and_Bagging.ipynb) | Bootstrap, variance reduction, OOB error, Extra Trees, permutation importance |
+| 10 | [Gradient Boosting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/10_Gradient_Boosting.ipynb) | XGBoost, LightGBM, CatBoost — and boosting math from scratch |
+| 11 | [Ensembles: Voting, Stacking & AdaBoost](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/11_Ensembles_Voting_Stacking_AdaBoost.ipynb) | Hard/soft voting, leakage-free stacking, AdaBoost's exponential loss |
+
+**Unsupervised learning**
+
+| # | Notebook | You will learn |
+|---|---|---|
+| 12 | [Clustering: K-Means & Hierarchical](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/12_Clustering_KMeans_and_Hierarchical.ipynb) | Lloyd's algorithm, k-means++, choosing k, linkages and dendrograms, cluster profiling |
+| 13 | [Clustering: DBSCAN & Gaussian Mixtures](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/13_Clustering_DBSCAN_and_Gaussian_Mixtures.ipynb) | Density clustering, HDBSCAN, EM, BIC/AIC, soft assignments |
+| 14 | [Dimensionality Reduction: PCA, t-SNE, UMAP](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/14_Dimensionality_Reduction_PCA_tSNE_UMAP.ipynb) | PCA via SVD, explained variance, t-SNE and UMAP for visualization, when not to trust them |
+| 15 | [Anomaly Detection](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/15_Anomaly_Detection.ipynb) | Isolation Forest, LOF, One-Class SVM, PyOD, evaluating with few labels |
+
+**Practical ML**
+
+| # | Notebook | You will learn |
+|---|---|---|
+| 16 | [Feature Engineering & Selection](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/16_Feature_Engineering_and_Selection.ipynb) | Encoding, transforms, interactions, filter/wrapper/embedded selection without leakage |
+| 17 | [Imbalanced Data & Model Evaluation](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/17_Imbalanced_Data_and_Model_Evaluation.ipynb) | Resampling and SMOTE done right, class weights, PR curves, cost-based thresholds |
+| 18 | [Model Interpretability: SHAP & LIME](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/18_Model_Interpretability_SHAP_LIME.ipynb) | Shapley values, SHAP and LIME, partial dependence, explaining models honestly |
+| 19 | [Recommender Systems](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/19_Recommender_Systems.ipynb) | Collaborative filtering, matrix factorization, implicit feedback, ranking metrics |
+| 20 | [Time-Series Forecasting](AI_Full_Stack_Engineer_Course/03_Classical_Machine_Learning/20_Time_Series_Forecasting.ipynb) | Decomposition, ETS/ARIMA with statsmodels, lag features with boosting, backtesting |
 
 ### Phase 4 — Deep Learning · [`04_Deep_Learning/`](AI_Full_Stack_Engineer_Course/04_Deep_Learning/)
 
@@ -205,23 +241,40 @@ Notebooks marked *(optional)* are useful but rarely needed for interviews — sk
 | 03 | [ML System Design](AI_Full_Stack_Engineer_Course/15_Interview_Prep/03_ML_System_Design.ipynb) | Recommenders, fraud, search ranking design rounds |
 | 04 | [LLM System Design](AI_Full_Stack_Engineer_Course/15_Interview_Prep/04_LLM_System_Design.ipynb) | RAG, agents, evaluation, cost/latency design rounds |
 | 05 | [Behavioral & Project Storytelling](AI_Full_Stack_Engineer_Course/15_Interview_Prep/05_Behavioral_and_Project_Storytelling.ipynb) | "Walk me through your project" and behavioral rounds |
+| 06 | [DSA Coding Patterns — Part 1](AI_Full_Stack_Engineer_Course/15_Interview_Prep/06_DSA_Coding_Patterns_Part_1.ipynb) | LeetCode-style rounds: arrays & hashing, two pointers, sliding window, stacks, binary search |
+| 07 | [DSA Coding Patterns — Part 2](AI_Full_Stack_Engineer_Course/15_Interview_Prep/07_DSA_Coding_Patterns_Part_2.ipynb) | Linked lists, trees, graphs, heaps, dynamic programming, backtracking |
 
 ---
 
 ## Study plans
 
-### Full course — about 24 weeks at 8–10 hours/week
+### Full course, week by week
 
-| Weeks | Focus |
+**[docs/STUDY_PLAN.md](docs/STUDY_PLAN.md)** has a checkbox for every notebook in order. It also covers how to study a single notebook and a weekly rhythm with review days and mock interviews. Budget roughly 6–8 hours per notebook.
+
+| Pace | Duration |
 |---|---|
-| 1–3 | Foundations (00) |
-| 4–7 | NumPy, Pandas, SQL, Math, Statistics, Visualization (01–02) |
-| 8–10 | Classical ML (03) |
-| 11–13 | Deep Learning (04) |
-| 14–16 | NLP, Computer Vision, RL — pick the ones that match your goal (05–07) |
-| 17–19 | Generative AI & LLMs (08) |
-| 20–22 | MLOps, Serving, Data Processing, AutoML (09–12) |
-| 23–24 | One capstone + Interview Prep (13, 15) |
+| Full-time (~6 h/day) | about 18 weeks |
+| Part-time (2–3 h/day) | about 10 months |
+
+| Weeks (full-time) | Focus |
+|---|---|
+| 1–3 | Python, NumPy, Pandas, SQL, math, statistics, visualization (00–02) |
+| 3–7 | Classical ML algorithm series (03), with DSA practice starting in week 3 |
+| 7–9 | Deep learning, NLP, computer vision, RL (04–07) |
+| 9–11 | Generative AI & LLMs (08) |
+| 11–14 | MLOps, serving, data processing, AutoML (09–12) |
+| 14–16 | Capstones and your own portfolio project (13–14) |
+| 17–18 | Interview prep (15) and mock interviews |
+
+### Flashcards for spaced repetition
+
+```bash
+python tools/export_flashcards.py            # → flashcards/ai_course_interview_flashcards.csv
+python tools/export_flashcards.py --include-quiz
+```
+
+This exports every 🎤 interview question in the course, with its answer, as a CSV that Anki can import directly. Cards are tagged by module and notebook, so you can review only what you've finished.
 
 ### Goal-based tracks
 
@@ -229,7 +282,8 @@ Notebooks marked *(optional)* are useful but rarely needed for interviews — sk
 - **LLM / GenAI Engineer:** 00 → 01/01–02, 04 → 03/01 → 04/01–03 → 05/02–03 → 08 (all) → 10/01–02 → Capstones 03–04 → 15/01, 04–05
 - **MLOps Engineer:** 00 → 01/02–03 → 03/02 → 09 (all) → 10 (all) → 11/01–02 → 12/01 → Capstone 01 → 15/03
 - **Computer Vision Engineer:** 00 → 01/01, 04 → 02/01 → 04/01–02 → 06 (all) → 09/01 → 10/01–02 → Capstone 02
-- **Interview sprint (4 weeks, if you already know the basics):** every 🔧 *Build It From Scratch* section in modules 01–04 and 08 → all Interview Q&A sections → module 15
+- **Data Scientist:** 00/01–02 → 01 (all) → 02/01 → 03 (all) → 12/01 → Capstone 01 → 15/01–03, 06
+- **Interview sprint (4 weeks, if you already know the basics):** every 🔧 *Build It From Scratch* section in modules 01–04 and 08 → all Interview Q&A sections (as flashcards) → module 15
 
 ---
 
@@ -282,10 +336,12 @@ The LLM notebooks read three environment variables, so you can point them at any
 ### 5. Launch
 
 ```bash
-jupyter lab
+tools/start_notebook.sh      # classic Jupyter Notebook, with the course kernels registered
 ```
 
-Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and start typing.
+The launcher points the default **Python 3** kernel at `.venv` and registers one kernel per extra environment (for example **AI Course (airflow)**). It also prints which notebooks need which kernel. On Windows, or if you prefer JupyterLab or VS Code, run `jupyter lab` from the activated `.venv` and pick the `.venv` interpreter as the kernel.
+
+Open [`00_Foundations/01_Python_Basics.ipynb`](AI_Full_Stack_Engineer_Course/00_Foundations/01_Python_Basics.ipynb) and start typing. Tip: create your own branch first (`git checkout -b my-learning`) so your answers never collide with course updates.
 
 > **Tip:** You learn by typing the code and solving the ✍️ exercises yourself — resist opening the solutions until you've tried.
 
@@ -314,13 +370,16 @@ Learning-AI-ML/
 ├── README.md
 ├── LICENSE
 ├── requirements*.txt
-├── docs/                                  template spec and course map
-├── tools/nb.py                            build / run / check / link-check notebooks
+├── docs/                                  template spec, course map, study plan
+├── tools/
+│   ├── nb.py                              build / run / check / link-check notebooks
+│   ├── start_notebook.sh                  launch Jupyter Notebook with the course kernels
+│   └── export_flashcards.py               interview Q&A → Anki CSV
 └── AI_Full_Stack_Engineer_Course/
     ├── 00_Foundations/                    Python, internals, packaging
     ├── 01_Core_Scientific_Computing/      NumPy, Pandas, SQL, math, statistics
     ├── 02_Data_Visualization/             Matplotlib & Seaborn, Plotly
-    ├── 03_Classical_Machine_Learning/     from scratch, scikit-learn, gradient boosting
+    ├── 03_Classical_Machine_Learning/     20 notebooks: supervised, unsupervised, practical ML
     ├── 04_Deep_Learning/                  NNs & transformers from scratch, PyTorch, Keras
     ├── 05_NLP/                            classical NLP, embeddings, Hugging Face
     ├── 06_Computer_Vision/                OpenCV, CNNs, YOLO
@@ -332,7 +391,7 @@ Learning-AI-ML/
     ├── 12_AutoML_Experimentation/         Optuna, Ray Tune, AutoGluon
     ├── 13_Capstone_Projects/              4 end-to-end projects with real code
     ├── 14_Templates/                      starter notebooks
-    └── 15_Interview_Prep/                 coding drills, theory, system design, storytelling
+    └── 15_Interview_Prep/                 ML coding drills, DSA patterns, theory, system design, storytelling
 ```
 
 ---
