@@ -1,0 +1,7 @@
+{
+ "system": "multi_agent",
+ "accuracy": 0.5385,
+ "n": 39,
+ "model": "gpt-oss-20b",
+ "source": "05_Multi_Agent_System_Project.ipynb live evaluation (replies in evals/recordings)"
+}

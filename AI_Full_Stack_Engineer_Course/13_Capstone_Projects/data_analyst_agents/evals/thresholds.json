@@ -1,0 +1,12 @@
+{
+ "system": "multi_agent",
+ "min_questions": 30,
+ "min_execution_accuracy": 0.40,
+ "min_accuracy_by_difficulty": {"simple": 0.50},
+ "min_routing_accuracy": 0.90,
+ "max_no_sql_rate": 0.10,
+ "max_mean_llm_calls": 6.0,
+ "max_mean_total_tokens": 15000,
+ "max_p95_latency_s": 120,
+ "max_accuracy_drop_vs_baseline": 0.05
+}

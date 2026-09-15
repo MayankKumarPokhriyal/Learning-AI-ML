@@ -1,0 +1,15 @@
+# Keep the build context small: the image gets the package and the lock file only (the BIRD data is mounted at run time)
+.git
+.gitignore
+.venv
+data/
+tests/
+evals/
+ci/
+**/__pycache__
+.pytest_cache
+.ruff_cache
+*.egg-info
+Dockerfile
+.dockerignore
+Makefile

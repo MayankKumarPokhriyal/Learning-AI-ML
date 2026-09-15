@@ -1,0 +1,138 @@
+# Example CI pipeline. To use it, copy this file to .github/workflows/data-analyst-agents.yml at the root of your repository.
+# If the project is not at the repository root, set PROJECT_DIR below to its folder.
+#
+# Every push/PR: lint → tests (FakeLLM, offline) → offline replay evaluation + regression gate → Docker build + smoke test.
+# Nightly (or manual): the live evaluation against your LLM endpoint + the gate; new recordings are uploaded for review.
+# Configure the live job with repository variables LLM_BASE_URL and LLM_MODEL and the secret LLM_API_KEY.
+name: data-analyst-agents-ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+env:
+  PROJECT_DIR: .
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+      - name: Ruff lint
+        run: uvx ruff@0.16.7 check .
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - name: Install locked dependencies + dev tools
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" -c requirements.lock
+      - name: Unit, agent, sandbox, API tests (FakeLLM scripted test double; no LLM, no data, no network)
+        run: .venv/bin/python -m pytest -m "not live"
+
+  replay-eval:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e . -c requirements.lock
+      - name: Restore the BIRD subset (so CI does not download it on every run)
+        uses: actions/cache@v6.1.0
+        with:
+          path: ${{ env.PROJECT_DIR }}/data/bird_minidev
+          key: bird-minidev-${{ hashFiles(format('{0}/src/data_analyst_agents/data.py', env.PROJECT_DIR), format('{0}/src/data_analyst_agents/config.py', env.PROJECT_DIR)) }}
+      - name: Fetch the data (skips files already present; ~37 MB of range requests)
+        run: .venv/bin/python -m data_analyst_agents.data
+      - name: The question set still matches its selection rule
+        run: .venv/bin/python -m data_analyst_agents.questions
+      - name: Offline replay evaluation from evals/recordings (a changed prompt → ReplayMiss → re-record with the live job)
+        run: .venv/bin/python -m data_analyst_agents.evaluate --mode replay --out data/eval/replay.json
+      - name: Regression gate (thresholds in evals/thresholds.json, baseline in evals/baseline_summary.json)
+        run: .venv/bin/python -m data_analyst_agents.gate --report data/eval/replay.json --baseline evals/baseline_summary.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: replay-eval-report
+          path: ${{ env.PROJECT_DIR }}/data/eval/replay.json
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build image
+        run: docker build -t data-analyst-agents:${{ github.sha }} .
+      - name: Smoke test (no data and no LLM here, so /health must be 200 and /ready 503 with a reason)
+        run: |
+          docker run -d --name analyst -p 8000:8000 data-analyst-agents:${{ github.sha }}
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/health && break; sleep 1; done
+          test "$(curl -s -o ready.json -w '%{http_code}' http://127.0.0.1:8000/ready)" = "503"
+          grep -q '"databases":"unavailable' ready.json
+          test "$(docker exec analyst id -u)" != "0"
+          docker rm -f analyst
+
+  live-eval:
+    needs: test
+    if: ${{ vars.LLM_BASE_URL != '' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.PROJECT_DIR }}
+    env:
+      LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+      LLM_MODEL: ${{ vars.LLM_MODEL }}
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          python-version: "3.12"
+      - run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]" -c requirements.lock
+      - uses: actions/cache@v6.1.0
+        with:
+          path: ${{ env.PROJECT_DIR }}/data/bird_minidev
+          key: bird-minidev-${{ hashFiles(format('{0}/src/data_analyst_agents/data.py', env.PROJECT_DIR), format('{0}/src/data_analyst_agents/config.py', env.PROJECT_DIR)) }}
+      - run: .venv/bin/python -m data_analyst_agents.data
+      - name: Live smoke test
+        run: .venv/bin/python -m pytest -m live
+      - name: Live evaluation (both systems, pass^k trials) — records fresh replies for offline replay
+        run: .venv/bin/python -m data_analyst_agents.evaluate --mode live --record --out data/eval/live.json
+      - name: Regression gate
+        run: .venv/bin/python -m data_analyst_agents.gate --report data/eval/live.json --baseline evals/baseline_summary.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: live-eval-report-and-recordings
+          path: |
+            ${{ env.PROJECT_DIR }}/data/eval/live.json
+            ${{ env.PROJECT_DIR }}/evals/recordings/

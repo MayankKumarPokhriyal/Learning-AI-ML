@@ -1,0 +1,8 @@
+# Created at runtime — recreate with `make data` and the commands in README.md.
+# data/ holds the BIRD databases (CC BY-SA 4.0: never commit them), job state, traces, charts, exports, eval reports, the sandbox cache.
+data/
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.egg-info/

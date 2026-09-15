@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "data-analyst-agents"
+version = "1.0.0"
+description = "AI Data Analyst Team: a multi-agent text-to-SQL analytics service with a verifier, sandboxed charts, human approvals, SSE jobs, tracing and an eval gate"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=3.13,<4",
+    "fastapi>=0.141,<1",
+    "pydantic>=2.13,<3",
+    "uvicorn>=0.52,<1",
+    "opentelemetry-sdk>=1.44,<2",
+    "numpy>=2.5,<3",
+    "pandas>=3.0,<4",       # used by the analysis sandbox
+    "matplotlib>=3.11,<4",  # used by the analysis sandbox
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9,<10",
+    "httpx>=0.28,<1",
+    "ruff>=0.16,<1",
+]
+
+[project.scripts]
+analyst-data = "data_analyst_agents.data:main"
+analyst-eval = "data_analyst_agents.evaluate:main"
+analyst-gate = "data_analyst_agents.gate:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/data_analyst_agents"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]  # run `pytest` from a source checkout without installing the package
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "live: calls a real OpenAI-compatible LLM server and needs the BIRD data (skipped automatically when either is missing)",
+]
+filterwarnings = [
+    "error::DeprecationWarning:data_analyst_agents",  # our own code must not use deprecated APIs
+    # third-party: starlette's TestClient touches an alias that anyio deprecated (not fixable in this project)
+    "ignore:The anyio.abc.BlockingPortal alias is deprecated:DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 180
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
